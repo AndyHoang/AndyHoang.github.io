@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-18T22:46:45+07:00</updated><id>http://localhost:4000/</id><title type="html">Your Name</title><subtitle>Web Developer from Somewhere</subtitle><entry><title type="html">Hello World</title><link href="http://localhost:4000/hello-world/" rel="alternate" type="text/html" title="Hello World" /><published>2017-03-18T22:40:58+07:00</published><updated>2017-03-18T22:40:58+07:00</updated><id>http://localhost:4000/hello-world</id><content type="html" xml:base="http://localhost:4000/hello-world/"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">You’re up and running!</title><link href="http://localhost:4000/Hello-World/" rel="alternate" type="text/html" title="You're up and running!" /><published>2014-03-03T00:00:00+07:00</published><updated>2014-03-03T00:00:00+07:00</updated><id>http://localhost:4000/Hello-World</id><content type="html" xml:base="http://localhost:4000/Hello-World/">&lt;p&gt;Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-19T00:14:26+07:00</updated><id>http://localhost:4000/</id><title type="html">Your Name</title><subtitle>Web Developer from Somewhere</subtitle><entry><title type="html">60 minutes setting up my first blog!</title><link href="http://localhost:4000/hello-world/" rel="alternate" type="text/html" title="60 minutes setting up my first blog!" /><published>2017-03-18T22:40:58+07:00</published><updated>2017-03-18T22:40:58+07:00</updated><id>http://localhost:4000/hello-world</id><content type="html" xml:base="http://localhost:4000/hello-world/">&lt;h2 id=&quot;getting-started&quot;&gt;Getting started&lt;/h2&gt;
+&lt;p&gt;As far as I remembered, I created a blog 2 year ago, when github “first” marketing about its feature github.io blog. I was excited and try it out right away. But umm… it was nothing more than one line &lt;strong&gt;Hello world&lt;/strong&gt; in the index.html file.&lt;/p&gt;
+
+&lt;p&gt;Ok, let skip that. Let create a brand-new one.&lt;/p&gt;
+
+&lt;h2 id=&quot;static-blog&quot;&gt;Static blog&lt;/h2&gt;
+
+&lt;p&gt;I’ve heard about this term before but haven’t really spend time one it. After digging around 30 mins (sorry I lied about 60 mins stuff), I figured out some frameworks that I could use including in Haskell (language I’ve recently interested in).&lt;/p&gt;
+
+&lt;p&gt;But hey, we need server for that right?… Ok, go back with thing provide from github. Well, it’s Jekyll.&lt;/p&gt;
+
+&lt;p&gt;Let try!&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll&quot;&gt;Jekyll&lt;/h2&gt;
+&lt;p&gt;Jekyll, in &lt;strong&gt;Ruby&lt;/strong&gt;, okey…&lt;/p&gt;
+
+&lt;p&gt;Googled a little bit more and &lt;strong&gt;bump&lt;/strong&gt;! Everything is settled.&lt;/p&gt;
+
+&lt;p&gt;Yeah, like super easy peasy. Just copy all the files (our just fork) the &lt;a href=&quot;https://github.com/barryclark/jekyll-now&quot;&gt;jekyll-now&lt;/a&gt; repo and you’re done!&lt;/p&gt;
+
+&lt;p&gt;Also I installed &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;gem&lt;/code&gt; stuff so that I can see my post in my local machine (for typo problem, yeah I know my post still have typos and grammar errors in just about 100 words above, and… below).&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-domain&quot;&gt;Custom domain&lt;/h2&gt;
+&lt;p&gt;This one is hard. Because I’m using Amazon route 53 for my domain. Not sure it is harder compare to others though. Well in my defense, it just my second time buying a domain!&lt;/p&gt;
+
+&lt;p&gt;After 30mins going nowhere. Finally google strike me again, I found this &lt;a href=&quot;http://sophiafeng.com/technical/2015/02/12/setting-up-custom-domain-name-with-github-pages-and-amazon-route-53/&quot;&gt;Tutorial&lt;/a&gt;. It’s fit perfectly with my case: Domain from Amazon, using github.io blog.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nice!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;thing-left&quot;&gt;Thing left?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;About me???&lt;/li&gt;
+  &lt;li&gt;Write Vietnamese in vim&lt;/li&gt;
+  &lt;li&gt;Tryout themes for this boring blog&lt;/li&gt;
+  &lt;li&gt;Add comment section. This &lt;a href=&quot;https://mademistakes.com/articles/jekyll-static-comments/&quot;&gt;Tutorial&lt;/a&gt; look promising!&lt;/li&gt;
+  &lt;li&gt;Make it work with https&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Getting started As far as I remembered, I created a blog 2 year ago, when github “first” marketing about its feature github.io blog. I was excited and try it out right away. But umm… it was nothing more than one line Hello world in the index.html file.</summary></entry><entry><title type="html">You’re up and running!</title><link href="http://localhost:4000/Hello-World/" rel="alternate" type="text/html" title="You're up and running!" /><published>2014-03-03T00:00:00+07:00</published><updated>2014-03-03T00:00:00+07:00</updated><id>http://localhost:4000/Hello-World</id><content type="html" xml:base="http://localhost:4000/Hello-World/">&lt;p&gt;Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/config.png&quot; alt=&quot;_config.yml&quot; /&gt;&lt;/p&gt;
 
