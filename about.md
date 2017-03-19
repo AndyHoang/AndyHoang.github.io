@@ -4,14 +4,17 @@ title: About
 permalink: /about/
 ---
 
-A simple software developer with love and Maths belief.
+A simple software developer with Love and Maths belief.
+
+### Why this blog
+This blog is about my experience in software developement as well as personal interests.
 
 ### Boring Information
 Current job:
   Python developer
 
 Company:
-[Parcel Perform](parcelperform.com)
+[Parcel Perform](https://www.parcelperform.com)
 
 Programming Language:
 - Work:
