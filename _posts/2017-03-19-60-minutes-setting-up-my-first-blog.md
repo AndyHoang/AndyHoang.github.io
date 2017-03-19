@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "60 minutes setting up my first blog!"
-date: "2017-03-18 22:40:58 +0700"
+date: "2017-03-19 00:33:52 +0700"
 ---
+
 
 ## Getting started
 As far as I remembered, I created a blog 2 year ago, when github "first" marketing about its feature github.io blog. I was excited and try it out right away. But umm... it was nothing more than one line __Hello world__ in the index.html file.
@@ -40,6 +41,7 @@ __Nice!__
 - Tryout themes for this boring blog
 - Add comment section. This [Tutorial](https://mademistakes.com/articles/jekyll-static-comments/) look promising!
 - Make it work with https
+
 
 
 
