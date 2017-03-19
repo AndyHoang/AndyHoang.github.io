@@ -8,7 +8,7 @@ title_separator          : "-"
 name                     : "Andy Hoang"
 description              : "Everybody lies"
 url                      : "andyhoang.me"
-baseurl                  : # the subpath of your site, e.g. "/blog"
+baseurl                  : ""
 repository               : "AndyHoang/AndyHoang.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
