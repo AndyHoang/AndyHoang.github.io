@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-19T21:12:16+07:00</updated><id>http://localhost:4000/</id><title type="html">Blog</title><subtitle>Everybody lies</subtitle><author><name>Andy Hoang</name><email>ngocdunghoangdl@gmail.com</email></author><entry><title type="html">60 minutes setting up my first blog!</title><link href="http://localhost:4000/60-minutes-setting-up-my-first-blog/" rel="alternate" type="text/html" title="60 minutes setting up my first blog!" /><published>2017-03-19T00:33:52+07:00</published><updated>2017-03-19T00:33:52+07:00</updated><id>http://localhost:4000/60-minutes-setting-up-my-first-blog</id><content type="html" xml:base="http://localhost:4000/60-minutes-setting-up-my-first-blog/">&lt;h2 id=&quot;getting-started&quot;&gt;Getting started&lt;/h2&gt;
+&lt;p&gt;As far as I can remember, I created this blog 2 years ago, when Github “first” marketing its feature: &lt;strong&gt;github.io&lt;/strong&gt; blog. I was so excited and tried it out right away. But umm… it was nothing more than a line &lt;strong&gt;Hello world&lt;/strong&gt; in the index.html file.&lt;/p&gt;
+
+&lt;p&gt;Ok, let’s move on. I need to create a brand-new one.&lt;/p&gt;
+
+&lt;h2 id=&quot;static-blog&quot;&gt;Static blog&lt;/h2&gt;
+
+&lt;p&gt;I’ve heard about this term before but haven’t really spend time one it. After digging around 30 mins (sorry I lied about 60 mins…), I figured out some frameworks that I could use, including in Haskell - language I’ve recently interested in.&lt;/p&gt;
+
+&lt;p&gt;But hey, we need server for that right?… Ok, going back with thing provided by Github. Well, it’s Jekyll.&lt;/p&gt;
+
+&lt;p&gt;Let’s try it out!!!!&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll&quot;&gt;Jekyll&lt;/h2&gt;
+&lt;p&gt;Jekyll, in ….&lt;strong&gt;Ruby&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Googled a little bit more and &lt;strong&gt;bump&lt;/strong&gt;! Everything is settled.&lt;/p&gt;
+
+&lt;p&gt;Yeah, like super easy peasy, you just need to copy all the files (or fork) the &lt;a href=&quot;https://github.com/barryclark/jekyll-now&quot;&gt;jekyll-now&lt;/a&gt; repo and you’re done!&lt;/p&gt;
+
+&lt;p&gt;I also installed &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;gem&lt;/code&gt; for ruby so that I can see my post in my local machine. Of course, I need that for reviewing my post, I know, I know, my post still have typos and grammar errors in 100 words above, and… below.&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-domain&quot;&gt;Custom domain&lt;/h2&gt;
+&lt;p&gt;This one is hard. I’m using Amazon route 53 for my domain. Not sure it is harder compare to others though. Well, in my defense, it is just my &lt;strong&gt;second time&lt;/strong&gt; buying a domain! (The first one was &lt;del&gt;jav…something.net&lt;/del&gt;, oh forget it)&lt;/p&gt;
+
+&lt;p&gt;After 30 mins going nowhere, google strike me again, I found this &lt;a href=&quot;http://sophiafeng.com/technical/2015/02/12/setting-up-custom-domain-name-with-github-pages-and-amazon-route-53/&quot;&gt;Tutorial&lt;/a&gt;. It’s fit perfectly with my case: Domain from Amazon and using github.io blog. Thanks bro!!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nice!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;first-post&quot;&gt;First post!&lt;/h2&gt;
+&lt;p&gt;Well if you’re planning to use Jekyll with Github and local review, I suggest you add those to &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/_site/
+*/_site/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Those was generated file, Github can do it for us.&lt;/p&gt;
+
+&lt;h2 id=&quot;thing-left&quot;&gt;Thing left?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;del&gt;About me???&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;Write Vietnamese in vim&lt;/li&gt;
+  &lt;li&gt;Tryout themes for this boring blog&lt;/li&gt;
+  &lt;li&gt;Add comment section. This &lt;a href=&quot;https://mademistakes.com/articles/jekyll-static-comments/&quot;&gt;Tutorial&lt;/a&gt; look promising!&lt;/li&gt;
+  &lt;li&gt;Make it work with https&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Andy Hoang</name><email>ngocdunghoangdl@gmail.com</email></author><summary type="html">Getting started As far as I can remember, I created this blog 2 years ago, when Github “first” marketing its feature: github.io blog. I was so excited and tried it out right away. But umm… it was nothing more than a line Hello world in the index.html file.</summary></entry></feed>

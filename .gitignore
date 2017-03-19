@@ -55,7 +55,4 @@ build-iPhoneSimulator/
 *.scssc
 .styles/.sass-cache
 styles/.sass-cache/*sass-cache/
-/_site/
-_site/
-*/_site/
 
