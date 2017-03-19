@@ -4,12 +4,29 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+A simple software developer with love and Maths belief.
 
-### More Information
+### Boring Information
+Current job:
+  Python developer
 
-A place to include any other types of information that you'd like to include about yourself.
+Company:
+[Parcel Perform](parcelperform.com)
+
+Programming Language:
+- Work:
+  - Java
+  - Python
+- Interested in:
+  - Haskell
+  - Javascript
+
+Stuffs:
+- Vim
+- Tmux
+- Mac
+
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[ngocdunghoangdl@gmail.com](mailto:ngocdunghoangdl@gmail.com)
