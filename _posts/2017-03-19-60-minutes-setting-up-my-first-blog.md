@@ -16,16 +16,16 @@ I've heard about this term before but haven't really spend time one it. After di
 
 But hey, we need server for that right?... Ok, going back with thing provided by Github. Well, it's Jekyll.
 
-Let try!
+Let's try it out!!!!
 
 ## Jekyll
 Jekyll, in ....__Ruby__.
 
 Googled a little bit more and __bump__! Everything is settled.
 
-Yeah, like super easy peasy, you just need to copy all the files (our fork) the [jekyll-now](https://github.com/barryclark/jekyll-now) repo and you're done!
+Yeah, like super easy peasy, you just need to copy all the files (or fork) the [jekyll-now](https://github.com/barryclark/jekyll-now) repo and you're done!
 
-I also installed `bundle` and `gem` for ruby so that I can see my post in my local machine. Of course - for reviewing typos, I know, right now, my post still have typos and grammar errors in 100 words above, and... below.
+I also installed `bundle` and `gem` for ruby so that I can see my post in my local machine. Of course, I need that for reviewing my post, I know, I know, my post still have typos and grammar errors in 100 words above, and... below.
 
 ## Custom domain
 This one is hard. I'm using Amazon route 53 for my domain. Not sure it is harder compare to others though. Well, in my defense, it is just my __second time__ buying a domain! (The first one was ~~jav...something.net~~, oh forget it)
@@ -44,7 +44,7 @@ Those was generated file, Github can do it for us.
 
 ## Thing left?
 
-- About me???
+- ~~About me???~~
 - Write Vietnamese in vim
 - Tryout themes for this boring blog
 - Add comment section. This [Tutorial](https://mademistakes.com/articles/jekyll-static-comments/) look promising!
