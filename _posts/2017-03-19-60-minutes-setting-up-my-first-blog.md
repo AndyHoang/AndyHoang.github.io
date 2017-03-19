@@ -6,29 +6,29 @@ date: "2017-03-19 00:33:52 +0700"
 
 
 ## Getting started
-As far as I remembered, I created a blog 2 year ago, when Github "first" marketing about its feature: github.io blog. I was excited and try it out right away. But umm... it was nothing more than one line __Hello world__ in the index.html file.
+As far as I can remember, I created this blog 2 years ago, when Github "first" marketing its feature: __github.io__ blog. I was so excited and tried it out right away. But umm... it is nothing more than one line __Hello world__ in the index.html file.
 
-Ok, let skip that. Let create a brand-new one.
+Ok, let's move on. I need to create a brand-new one.
 
 ## Static blog
 
-I've heard about this term before but haven't really spend time one it. After digging around 30 mins (sorry I lied about 60 mins stuff), I figured out some frameworks that I could use including in Haskell (language I've recently interested in).
+I've heard about this term before but haven't really spend time one it. After digging around 30 mins (sorry I lied about 60 mins...), I figured out some frameworks that I could use, including in Haskell - language I've recently interested in.
 
-But hey, we need server for that right?... Ok, go back with thing provide from Github. Well, it's Jekyll.
+But hey, we need server for that right?... Ok, going back with thing provided by Github. Well, it's Jekyll.
 
 Let try!
 
 ## Jekyll
-Jekyll, in __Ruby__, okey...
+Jekyll, in ....__Ruby__.
 
 Googled a little bit more and __bump__! Everything is settled.
 
-Yeah, like super easy peasy. Just copy all the files (our just fork) the [jekyll-now](https://github.com/barryclark/jekyll-now) repo and you're done!
+Yeah, like super easy peasy, you just need to copy all the files (our fork) the [jekyll-now](https://github.com/barryclark/jekyll-now) repo and you're done!
 
-I also installed `bundle` and `gem` for ruby so that I can see my post in my local machine. Of course - reviewing typos, actually I know my post still have typos and grammar errors in only 100 words above, and... below.
+I also installed `bundle` and `gem` for ruby so that I can see my post in my local machine. Of course - for reviewing typos, I know, right now, my post still have typos and grammar errors in 100 words above, and... below.
 
 ## Custom domain
-This one is hard. I'm using Amazon route 53 for my domain. Not sure it is harder compare to others though. Well, in my defense, it is just my __second time__ buying a domain! (The first one was ~~jav...something.net~~, oh I forgot....)
+This one is hard. I'm using Amazon route 53 for my domain. Not sure it is harder compare to others though. Well, in my defense, it is just my __second time__ buying a domain! (The first one was ~~jav...something.net~~, oh forget it)
 
 After 30 mins going nowhere, google strike me again, I found this [Tutorial](http://sophiafeng.com/technical/2015/02/12/setting-up-custom-domain-name-with-github-pages-and-amazon-route-53/). It's fit perfectly with my case: Domain from Amazon and using github.io blog. Thanks bro!!
 
