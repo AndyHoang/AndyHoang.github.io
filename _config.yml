@@ -75,6 +75,7 @@ author:
 include:
   - .htaccess
   - _pages
+#include: ['_pages']
     
 # Exclude these files from your production _site
 exclude:
@@ -196,7 +197,6 @@ compress_html:
   clippings: all
   ignore:
     envs: development
-include: ['_pages']
 
 defaults:
   # _posts
