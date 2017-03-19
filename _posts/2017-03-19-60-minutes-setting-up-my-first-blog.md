@@ -6,7 +6,7 @@ date: "2017-03-19 00:33:52 +0700"
 
 
 ## Getting started
-As far as I can remember, I created this blog 2 years ago, when Github "first" marketing its feature: __github.io__ blog. I was so excited and tried it out right away. But umm... it is nothing more than one line __Hello world__ in the index.html file.
+As far as I can remember, I created this blog 2 years ago, when Github "first" marketing its feature: __github.io__ blog. I was so excited and tried it out right away. But umm... it was nothing more than a line __Hello world__ in the index.html file.
 
 Ok, let's move on. I need to create a brand-new one.
 
