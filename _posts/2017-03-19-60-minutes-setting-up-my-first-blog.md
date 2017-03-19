@@ -46,6 +46,6 @@ Those was generated file, Github can do it for us.
 
 - ~~About me???~~
 - Write Vietnamese in vim
-- Tryout themes for this boring blog
-- Add comment section. This [Tutorial](https://mademistakes.com/articles/jekyll-static-comments/) look promising!
+- ~~Tryout themes for this boring blog~~
+- ~~Add comment section. This [Tutorial](https://mademistakes.com/articles/jekyll-static-comments/) look promising!~~
 - Make it work with https
