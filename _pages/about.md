@@ -1,13 +1,13 @@
 ---
 layout: single
-title: About
+title: About me
 permalink: /about/
 ---
 
 A simple software developer with Love and Maths belief.
 
 ### Why this blog
-This blog is about my experience in software developement as well as personal interests.
+This blog is where I share my experience in software development as well as personal interests.
 
 ### Boring Information
 Current job:
@@ -28,8 +28,3 @@ Stuffs:
 - Vim
 - Tmux
 - Mac
-
-
-### Contact me
-
-[ngocdunghoangdl@gmail.com](mailto:ngocdunghoangdl@gmail.com)
