@@ -303,6 +303,7 @@ paginate_path: /page:num/
 # Plugins
 gems:
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+jekyll-include-cache:
 
 
 # Plugins (previously gems:)
