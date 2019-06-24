@@ -223,14 +223,12 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url:
->>>>>>> upstream/master
 
 
 # Reading Files
 include:
   - .htaccess
   - _pages
-<<<<<<< HEAD
 #include: ['_pages']
     
 # Exclude these files from your production _site
@@ -238,11 +236,8 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - CNAME
-=======
-exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
->>>>>>> upstream/master
   - vendor
   - .asset-cache
   - .bundle
@@ -257,10 +252,7 @@ exclude:
   - Gemfile
   - Gruntfile.js
   - gulpfile.js
-<<<<<<< HEAD
-=======
   - LICENSE
->>>>>>> upstream/master
   - log
   - node_modules
   - package.json
@@ -277,21 +269,6 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 
 # Conversion
-<<<<<<< HEAD
-#markdown: kramdown
-#highlighter: rouge
-#lsi: false
-#excerpt_separator: "\n\n"
-#incremental: false
-# Jekyll 3 now only supports Kramdown for Markdown
-=======
-markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
-
->>>>>>> upstream/master
 
 # Markdown Processing
 kramdown:
@@ -303,50 +280,39 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
-<<<<<<< HEAD
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css
     css_class: 'highlight'
 
 
-=======
 
 
 # Sass/SCSS
 sass:
   sass_dir: _sass
   style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
->>>>>>> upstream/master
 
 
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-<<<<<<< HEAD
-timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins
 gems:
-=======
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins (previously gems:)
 plugins:
->>>>>>> upstream/master
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
-<<<<<<< HEAD
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-=======
   - jekyll-include-cache
->>>>>>> upstream/master
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -355,10 +321,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-<<<<<<< HEAD
-=======
   - jekyll-include-cache
->>>>>>> upstream/master
 
 
 # Archives
