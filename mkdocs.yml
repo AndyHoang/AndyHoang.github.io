@@ -7,3 +7,7 @@ repo_url: "https://github.com/AndyHoang/AndyHoang.github.io"
 theme:
   name: material
 
+markdown_extensions:
+  - meta
+extra:
+  disqus: andyhoang-me
