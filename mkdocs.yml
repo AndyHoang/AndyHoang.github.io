@@ -1,0 +1,9 @@
+site_name: My Blog
+site_description: Thinking & Writing
+site_author: andyhoang
+site_url: 'https://andyhoang.github.io/'
+repo_name: null
+repo_url: "https://github.com/AndyHoang/AndyHoang.github.io"
+theme:
+  name: material
+
