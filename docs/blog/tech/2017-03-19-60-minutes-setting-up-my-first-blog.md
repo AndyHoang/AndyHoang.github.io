@@ -1,7 +1,7 @@
 ---
-layout: single
 title: "60 minutes setting up my first blog!"
 date: "2017-03-19 00:33:52 +0700"
+author: Andy Hoang
 ---
 
 

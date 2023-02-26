@@ -1,7 +1,8 @@
 ---
-layout: single
 title: "Hoa rơi Nước chảy"
-date: "February 26, 2023"
+date: 2023-02-26
+toc: true
+author: Andy Hoang
 ---
 
 Hoa hữu ý hoa rơi xuống nước
