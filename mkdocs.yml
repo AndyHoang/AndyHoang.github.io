@@ -65,7 +65,7 @@ plugins:
         mermaid2: false
         password_button: true
         remember_password: true
-        default_expire_dalay: 24
+        default_expire_delay: 24
         # reload_scripts:
             # - "./assets/extra.js"
 
@@ -121,7 +121,13 @@ markdown_extensions:
       hardbreak: true # use \ to create new line
       nbsp: true # use \<space> to create &nbsp;
   - pymdownx.progressbar
-  
+
+extra:
+  comments:
+    enabled: true
+    # defaults to utterances unless replaced with mode: giscus
+    mode: utterances
+    type: issues
 
 extra_javascript:
   - "https://utteranc.es/client.js"
