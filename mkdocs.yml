@@ -122,8 +122,6 @@ markdown_extensions:
       nbsp: true # use \<space> to create &nbsp;
   - pymdownx.progressbar
   
-extra:
-  disqus: andyhoang-me
 
 extra_javascript:
-  - comments.html
+  - "https://utteranc.es/client.js"
