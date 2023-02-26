@@ -125,3 +125,5 @@ markdown_extensions:
 extra:
   disqus: andyhoang-me
 
+extra_javascript:
+  - comments.html
