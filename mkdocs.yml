@@ -11,3 +11,10 @@ markdown_extensions:
   - meta
 extra:
   disqus: andyhoang-me
+nav:
+  - Home: index.md
+  - Tech:
+    - 'Setup my first blog': tech/2017-03-19-60-minutes-setting-up-my-first-blog.md
+  - Poet:
+    - 'poet/hoa-roi-nuoc-chay.md'
+    
