@@ -13,3 +13,6 @@ Nước vô tâm nước chảy cùng hoa
 Giọt sương ở lại trên cành
 
 Em ơi anh vẫn lều tranh đợi chờ.
+
+
+> Autumn, 2022
