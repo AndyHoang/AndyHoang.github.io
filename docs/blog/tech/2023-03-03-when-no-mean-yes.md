@@ -12,11 +12,10 @@ author: Andy Hoang
 
 I’m not talking about the conversation with your lady, your SO or your GF, this is about we’re having a productive conversations with your product owners.
 
-As a developer, saying "YES" to a particular request is often seen as a sign of agreement. It's a simple and straightforward response that is often interpreted as a green light to move forward. However, sometimes saying "NO" can be the better choice.
-
+As a developer, saying "YES" to a particular request is often seen as a sign of agreement. It's a simple and straightforward response that is often interpreted as a green light to move forward.
 When you say "YES" you're effectively closing the door on further discussion. All parties assumed they are on the same page, and there's no need to revisit the issue. In a sense, saying "NO" can actually open up a productive conversation.
 
-Hence, saying "NO" doesn't have to be the end of the discussion. It can simply mean that you need more information or time to consider the request. When you follow up with an explanation, you can clarify your concerns and provide an opportunity for the other party to address them.
+However, sometimes saying "NO" can be the better choice, it doesn't have to be the end of the discussion. It can simply mean that you need more information or time to consider the request. When you follow up with an explanation, you can clarify your concerns and provide an opportunity for the other party to address them.
 
 <div style="display: flex; justify-content: center;">
   <img src="/assets/picture/request-product.jpg" width="400" style="display: block; margin: auto;">
@@ -43,7 +42,7 @@ How to soften the "negative" response and keep the door open
 * There might also be a power dynamic in place, where one person feels they are either at a disadvantage or they are not free to disagree.
 * There might also be a strength advantage/disadvantage around the common language of discussion, wherein one person has notably stronger/weaker language skills in the meeting language.
 * How we react to this can also determine the quality of our discussion and the potential for misunderstanding
-* communication is a two-way street and we know we are communicating in a multi-cultural environment and we are often communicating in our 2nd or 3rd language. 
+* Communication is a two-way street and we know we are communicating in a multi-cultural environment and we are often communicating in our 2nd or 3rd language. 
 
 
 ## Just Speaking the same language 
@@ -55,7 +54,7 @@ Therefore, within a worldwide company, this awkwardness probably happened here a
 
 * Communication styles vary from person to person and from culture. For some people, “no” means "not possible". To that person, "not possible" means that there is no need to discuss further and any more questions might aggravate the situation or the relationship and might be seen as disrespectful by ignoring the answer that was given.
 
-* To someone from a negotiating culture, NO just means we have not yet reached an agreement. To expert negotiators, NO is just an opening gambit--a place to start the discussion.
+* To someone from a negotiating culture, NO just means we have not yet reached an agreement. To expert negotiators, NO is just an opening gambit; a place to start the discussion.
 
 ## Should I say YES or NO, though?
 
@@ -74,7 +73,7 @@ As a large organization, creating a specific culture across the company is alway
 
 In reality it not just that simple, meetings, requirement changes, human resource changes, deadline changes, mockup changes happened every single day.
 
-To address those challenges, we have a range of software development processes: Spiral model, Agile or something you're naming it, then Scrum, Extreme Processing, and other variations. If you're new and just start reading the books, its not making senses that "your first release is not something look like your final product", your normal thinking process (like waterfall) is not there leading to more concern questions, with uneasy feelings.
+To address those challenges, we have a range of software development processes: Spiral model, Agile or something you're naming it, there are Scrum, Extreme Processing, and other variations. If you're new and just start reading the books, its not making senses that "your first release is not something look like your final product", your normal thinking process (like waterfall) is not in the result leading to more concern questions, with uneasy feelings.
 
 
 <div style="display: flex; justify-content: center;">
@@ -90,12 +89,13 @@ We are not going to dig deeper into each those process, nor it pros and cons, bu
 
 **The aim is to prevent misunderstandings caused by language differences.**
 
-In that room, Saying NO or YES usually need to follow up with clarifications, questions, also rephrasing to provide a better meeting notes and agreements
+In that room, Saying NO or YES usually need to follow up with clarifications, questions, also rephrasing to provide a better meeting notes and agreements.
 > Let's talk about meeting notes sometimes later
 
 ## My Thought
-I've been reading the book [No Rules Rules: Netflix and the Culture of Reinvention](https://www.amazon.com/No-Rules-Netflix-Culture-Reinvention/dp/1984877860), watching Chinese kung fu movies, it is common for characters to use the phrase "fight poison with poison" (kill fire with fire)
+
+I've been reading the book [No Rules Rules: Netflix and the Culture of Reinvention](https://www.amazon.com/No-Rules-Netflix-Culture-Reinvention/dp/1984877860), watching Chinese kung-fu movies where it is common for characters to use the phrase "fight poison with poison" (kill fire with fire).
 
 These have led me to contemplate that something that appears negative can potentially have a positive outcome.
 
-What you think?
+What do you think?
