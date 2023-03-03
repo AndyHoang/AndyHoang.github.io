@@ -16,3 +16,5 @@ Hoa ơi sương vẫn lều tranh đợi đầy.
 
 
 > Autumn, 2022
+
+> Bài này, đáng tiếc thomay chấm điểm kém
