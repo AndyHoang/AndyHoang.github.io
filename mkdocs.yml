@@ -129,6 +129,9 @@ extra:
     # defaults to utterances unless replaced with mode: giscus
     mode: utterances
     type: issues
+  analytics:
+    provider: google
+    property: G-6ZRYGDENRB
 
 extra_javascript:
   - "https://utteranc.es/client.js"
