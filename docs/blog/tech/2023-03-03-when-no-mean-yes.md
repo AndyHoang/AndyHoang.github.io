@@ -10,12 +10,18 @@ author: Andy Hoang
   <img src="/assets/picture/your-lady-convo.jpg" width="400" style="display: block; margin: auto;">
 </div>
 
-I’m not talking about the conversation with your lady, your SO or your GF, this is about we’re having a productive conversations with your product owners
+I’m not talking about the conversation with your lady, your SO or your GF, this is about we’re having a productive conversations with your product owners.
+
 As a developer, saying "YES" to a particular request is often seen as a sign of agreement. It's a simple and straightforward response that is often interpreted as a green light to move forward. However, sometimes saying "NO" can be the better choice.
 
-When you say "YES" you're effectively closing the door on further discussion. Both parties assume they are on the same page, and that there's no need to revisit the issue. In a sense, saying "no" can actually open up a productive conversation.
+When you say "YES" you're effectively closing the door on further discussion. All parties assumed they are on the same page, and there's no need to revisit the issue. In a sense, saying "NO" can actually open up a productive conversation.
 
-Saying "NO" doesn't have to be the end of the discussion. It can simply mean that you need more information or time to consider the request. When you follow up with an explanation, you can clarify your concerns and provide an opportunity for the other party to address them.
+Hence, saying "NO" doesn't have to be the end of the discussion. It can simply mean that you need more information or time to consider the request. When you follow up with an explanation, you can clarify your concerns and provide an opportunity for the other party to address them.
+
+<div style="display: flex; justify-content: center;">
+  <img src="/assets/picture/request-product.jpg" width="400" style="display: block; margin: auto;">
+  <img src="/assets/picture/delivering-product.jpg" width="400" style="display: block; margin: auto;">
+</div>
 
 > For example, let's say a client requests a new feature for a software project you're working on. If you say "yes," the client may assume that the feature will be implemented without any further discussion, or their requirement is clear enough for every party to understand. However, if you say "no" and explain that the feature would require significant resources and could delay the project timeline, the client may be able to suggest or even open to a suggestion with a more feasible alternative.
 
