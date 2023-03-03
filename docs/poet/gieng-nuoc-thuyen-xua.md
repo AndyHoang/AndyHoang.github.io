@@ -6,27 +6,16 @@ author: Andy Hoang
 comments: true
 ---
 
-# Bản 1
 
-Cây đa, bến nước, con đường nhỏ
+Cây đa, giếng nước, con đò nhỏ
 
-Ngõ trúc, rào thưa, khúc quanh co
+Ngõ vắng, bờ đê khúc quanh co
 
-Người đi, bến đậu bao thương nhớ
+Thuyền đi, nước gợn bao thương nhớ
 
-Khách cũ, thuyền xưa, chẳng hỏi dò
+Khách cũ, người xưa, chẳng hỏi dò (có đợi đò?)
 
-# Bản 2
-
-
-Cây đa, bến nước, con đường nhỏ
-
-Ngõ trúc, rào thưa, khúc quanh co
-
-Thuyền đi sóng gợn bao thương nhớ
-
-Bến cũ, người xưa, có đợi đò?
 
 > Written in 2022
 
-> thomay chấm rất tệ!
+> thomay chấm đây là thơ con cóc, không chấp nhận được!
