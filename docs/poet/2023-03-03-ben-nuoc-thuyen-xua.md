@@ -1,6 +1,6 @@
 ---
 title: "Bến nước thuyền xưa"
-date: 2023-03-03
+time: '2023-03-03 00:00'
 toc: true
 author: Andy Hoang
 comments: true

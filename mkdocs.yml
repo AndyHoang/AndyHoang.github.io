@@ -61,6 +61,8 @@ plugins:
         - name: reviews
           dirs:
             - reviews
+      time_format: '%B %d, %Y'
+      meta_time_format: '%Y-%m-%d %H:%M'
       theme:
         name: card
       #features:
