@@ -1,12 +1,10 @@
+---
+exclude_from_blog: true
+---
+
 # Home
 
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+{{ blog_content }}
 
 ## :material-github: GitHub Stats
 

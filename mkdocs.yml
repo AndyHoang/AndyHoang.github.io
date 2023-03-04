@@ -53,6 +53,20 @@ plugins:
   - search # must be included at the first place
   # - tags: # we have our own internal tag feature
         # tags_file: tags.md # generated links do not work
+  - blogging:
+      dirs: # The directories to be included
+        - blog
+        - poet
+      categories:
+        - name: reviews
+          dirs:
+            - reviews
+      theme:
+        name: card
+      #features:
+        #tags:
+          #index_page: tags.md
+          #insert: top
   - awesome-pages:
       # collapse_single_pages: true # replaced by navigation.indexes
   # - section-index # must be after awesome-pages, replaced by navigation.indexes

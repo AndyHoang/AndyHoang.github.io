@@ -1,7 +1,8 @@
 ---
 title: "When Yes mean NO..."
-date: "2023-03-03T11:41:50 +0700"
+date: "2023-03-04 13:15"
 author: Andy Hoang
+description: I’m not talking about the conversation with your lady, your SO or your GF, this is about having productive conversations with your product owners.
 ---
 
 ## Don't get me wrong
