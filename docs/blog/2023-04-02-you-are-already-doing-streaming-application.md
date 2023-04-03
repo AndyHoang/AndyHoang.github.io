@@ -13,13 +13,16 @@ Không quá khó để nhờ ChatGPT hay Notion AI, hay bất kì cái gì để
 
 Tuy nhiên để "làm việc" với môn này thường các sếp sẽ bàn giao cho bạn 1 lô sách "how to" từ cookbook cho tới chuyên sâu để có thể làm "đúng" 1 chương trình streaming processing.
 Một vài tựa sách mà các đàn anh thường hay giới thiệu có lẽ là
+
 * [Stream Processing with Apache Flink](https://www.oreilly.com/library/view/stream-processing-with/9781491974285/)
+
 * [Designing Data-Intensive Applications](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/)
+
 * Giới thiệu mình với...
 
-## Một chút context về functional programming
+## Một chút context về Functional Programming
 
-Thường thì chúng ta nhắc đến `map`, `flatmap`, `filter`, `reduce` ở một vài ngôn ngữ như js, python, java, scala như là mốt sự "hiện hữu" của functional programming trong mindset của developer. Chẳng qua chưa có hội, điều kiện "all in" mà thôi.
+Thường thì chúng ta nhắc đến `map`, `flatmap`, `filter`, `reduce` ở một vài ngôn ngữ như js, python, java, scala như là mốt sự "hiện hữu" của Functional Programming trong Mindset của Developer. Chẳng qua chưa có hội, điều kiện "all in" mà thôi.
 
 Nó có phần đúng và cũng có phần sai, nhưng mà khoan, tại sao chúng ta lại nhắc về FP nhỉ?
 
@@ -80,6 +83,8 @@ Bạn có thể cơ bản được cập nhật "real-time" tổng số lỗi 20
 
 Một số trường hợp dùng nâng cao hơn về CLI sử dụng "tail" để mở đầu, và kết thúc là 1 stdout cũng rất phổ biến trong quá trình debug nhanh hệ thống.
 
+
+>`server.log`
 ```
 {"log_timestamp": "2021-09-22 13:15:27.000", "request": "/", "body_bytes_sent": 1024, "ip": "192.168.0.1", "thread": "T-1000"}
 {"log_timestamp": "2021-09-22 13:15:32.000", "request": "/login", "body_bytes_sent": 1987, "ip": "192.168.0.2", "thread": "T-1001"}
@@ -100,7 +105,7 @@ tail -f server.log | grep --line-buffered  thread | sed -r 's/^.*log_timestamp\"
 2021-09-22 13:16:10.000 1234 /about.html
 ```
 
-## Steam processing 101
+## Stream processing 101
 
 Tóm lại, với những chương trình "nhỏ", "cơ bản" bạn có thể gộp nó lại thành 1 chương trình to hơn, hoành tráng hơn rât nhiều, và **stream processing** cũng thế, với những element cơ bản:
 
@@ -115,5 +120,7 @@ Hãy sẵn với bài toán nhập môn của [Flink](https://nightlies.apache.o
 ## My thought
 
 Cám ơn [Making Sense of Stream Processing - Chapter 4](https://www.oreilly.com/library/view/making-sense-of/9781492042563/) đã tạo cảm hứng cho mình viết bài này, phần lớn ý tưởng của bài blog được tạo ra ở đây
+
 Phần còn lại là nhờ ChatGPT viết ví dụ.
-Với mình thì đâu đó Functional Programming vẫn 1 cái gì đó đóng góp vào mindset đồ chơi lập trình real-time này, còn các bạn thì sao?
+
+Với mình thì đâu đó Functional Programming vẫn 1 cái gì đó đóng góp vào Mindset đồ chơi lập trình real-time này, còn các bạn thì sao?
