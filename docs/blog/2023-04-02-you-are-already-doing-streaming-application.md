@@ -30,19 +30,21 @@ Thường những "phép biến đổi stateless" của FP được dùng khá n
 
 ## Pipe (|) như là một streaming cơ bản
 
-(|) được dùng từ khá lâu, nhất là các bạn choi choi thời 8x-9x mới đầu chơi emoji bậy mà k cần yahoo support vậy. Tuy nhiên lịch sử của nó thì khá xa so với thời kì này, ai muốn search thêm thì cứ search về lịch sử của nó. Bài viết này tập trung vào mối quan hệ của (|) và Title của chúng ta
+(|) được dùng từ khá lâu, nhất là các bạn choi choi thời 8x-9x mới đầu chơi emoji bậy mà k cần yahoo support vậy. Tuy nhiên lịch sử của nó thì khá xa so với thời kì này, ai muốn search thêm thì nhờ mấy bạn AI giúp. Bài viết này tập trung vào mối quan hệ của cái (|) và Title của chúng ta
 
 `ls | xargs rm` là một hành động thường có kết quả không tốt cho HĐH của bạn tuy nhiên bạn vừa mới hoàn thành xong một chương trình khá xịn sò, đó là
+
 * list tất cả các file folder trong directory
+
 * xoá nó với `rm` và sử dụng thêm 1 từ hơi lạ `xargs`
 
-Chương trình ta vừa viết cũng không hẵn lúc nào cũng chạy đúng cả, vì đơn giản phần sau (|) sẽ "chừa" lại folder, vì rờ mờ mà không rờ ép thì không xoá được folder.
+Chương trình ta vừa viết cũng không hẵn lúc nào cũng chạy đúng cả, vì đơn giản phần sau cái (|) sẽ "chừa" folder lại, vì rờ mờ mà không rờ ép thì không xoá được folder.
 
 Khoan đã, vậy chương trình mình vừa viết có phải là 1 streaming procesing application không?
 > Không... hẵn
 
 
-ChatGpt giúp mình tạo ra 1 server log dạng này
+ChatGpt đã giúp mình tạo ra 1 server log dạng này
 
 >`server.log`
 ```
@@ -66,7 +68,7 @@ Có bao nhiêu request trả về status_code 200?
 cat server.log | grep 200 | wc -l
 ```
 
-`cat, grep, wc` đều là những cli cơ bản mà hầu như lập trình viên nào cũng dùng qua, và nó có 1 đặc tính là hầu như stateless (à trừ `sudo rm -rf  --no-preserve-root /` ra). Khi bạn "compose" chúng lại bằng compatible input/output bạn sẽ được 1 câu "cli cool ngầu hơn" và phục vụ được nhiều mục đích hơn.
+`cat, grep, wc` đều là những cli cơ bản mà hầu như lập trình viên nào cũng dùng qua, và nó có 1 đặc tính là hầu như stateless (à trừ `sudo rm -rf  --no-preserve-root /` ra). Khi bạn "compose" chúng lại bằng những compatible input/output bạn sẽ được 1 câu "cli cool ngầu hơn" và phục vụ được nhiều mục đích hơn.
 
 Đổi lại bài toán trên 1 chút, với 1 file server.log đang chạy  ở 1 con máy chủ nào đó, với nhiều tmux panel được mở:
 
@@ -119,7 +121,7 @@ Hãy sẵn với bài toán nhập môn của [Flink](https://nightlies.apache.o
 
 ## My thought
 
-Cám ơn [Making Sense of Stream Processing - Chapter 4](https://www.oreilly.com/library/view/making-sense-of/9781492042563/) đã tạo cảm hứng cho mình viết bài này, phần lớn ý tưởng của bài blog được tạo ra ở đây
+Cám ơn [Making Sense of Stream Processing - Chapter 4](https://www.oreilly.com/library/view/making-sense-of/9781492042563/), `The Unix Philosophy of Distributed Data` đã tạo cảm hứng cho mình viết bài này, phần lớn ý tưởng của bài blog được tạo ra ở đây
 
 Phần còn lại là nhờ ChatGPT viết ví dụ.
 
