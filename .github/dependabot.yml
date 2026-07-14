@@ -1,6 +1,7 @@
 version: 2
 updates:
-  # Python dependencies (Poetry: pyproject.toml + poetry.lock)
+  # Python dependencies (uv: pyproject.toml + uv.lock).
+  # Dependabot reads uv.lock under the "pip" ecosystem (there is no separate "uv" value).
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
