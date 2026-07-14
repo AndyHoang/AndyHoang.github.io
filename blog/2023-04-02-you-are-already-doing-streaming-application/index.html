@@ -886,7 +886,7 @@ Một vài tựa sách mà các đàn anh thường hay giới thiệu có lẽ 
 <p>ChatGpt đã giúp mình tạo ra 1 server log dạng này</p>
 <blockquote>
 <p><code>server.log</code>
-<div class="highlight"><pre><span></span><code>[2021-09-22 11:09:10] INFO: Starting server...
+<code>[2021-09-22 11:09:10] INFO: Starting server...
 [2021-09-22 11:09:28] INFO: Server successfully started and listening on port 8080
 [2021-09-22 11:10:12] DEBUG: Received GET request from 127.0.0.1 with status code 200
 [2021-09-22 11:12:56] DEBUG: Received POST request from 127.0.0.1 with status code 503
@@ -898,40 +898,35 @@ Một vài tựa sách mà các đàn anh thường hay giới thiệu có lẽ 
 [2021-09-22 11:35:47] DEBUG: Received POST request from 127.0.0.1 with status code 200
 [2021-09-22 11:40:22] DEBUG: Received GET request from 127.0.0.1 with status code 200
 [2021-09-22 11:43:59] DEBUG: Received GET request from 127.0.0.1 with status code 503
-[2021-09-22 11:45:22] INFO: Stopping server for backups
-</code></pre></div></p>
+[2021-09-22 11:45:22] INFO: Stopping server for backups</code></p>
 </blockquote>
 <p>Có bao nhiêu request trả về status_code 200?
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>server.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
-</code></pre></div></p>
+<code>bash
+cat server.log | grep 200 | wc -l</code></p>
 <p><code>cat, grep, wc</code> đều là những cli cơ bản mà hầu như lập trình viên nào cũng dùng qua, và nó có 1 đặc tính là hầu như stateless (à trừ <code>sudo rm -rf  --no-preserve-root /</code> ra). Khi bạn &ldquo;compose&rdquo; chúng lại bằng những compatible input/output bạn sẽ được 1 câu &ldquo;cli cool ngầu hơn&rdquo; và phục vụ được nhiều mục đích hơn.</p>
 <p>Đổi lại bài toán trên 1 chút, với 1 file server.log đang chạy  ở 1 con máy chủ nào đó, với nhiều tmux panel được mở:</p>
-<p><div class="highlight"><pre><span></span><code>tail<span class="w"> </span>-f<span class="w"> </span>server.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">200</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>server_200.log
-
-tail<span class="w"> </span>-f<span class="w"> </span>server.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">500</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>server_500.log
-
-watch<span class="w"> </span><span class="s2">&quot;wc -l server_200.log&quot;</span>
-watch<span class="w"> </span><span class="s2">&quot;wc -l server_500.log&quot;</span>
-</code></pre></div>
+<p>```bash
+tail -f server.log | grep 200 &raquo; server_200.log</p>
+<p>tail -f server.log | grep 500 &raquo; server_500.log</p>
+<p>watch &ldquo;wc -l server_200.log&rdquo;
+watch &ldquo;wc -l server_500.log&rdquo;</p>
+<p>```
 Bạn có thể cơ bản được cập nhật &ldquo;real-time&rdquo; tổng số lỗi 200/500 mà con server đang gặp phải. Tất nhiên trường hợp này quá ư là thừa, khi mà toàn bộ log server ngày nay đã được đưa vào kibana, graphana để vẽ chart nhìn sướng con mắt.</p>
 <p>Một số trường hợp dùng nâng cao hơn về CLI sử dụng &ldquo;tail&rdquo; để mở đầu, và kết thúc là 1 stdout cũng rất phổ biến trong quá trình debug nhanh hệ thống.</p>
 <blockquote>
 <p><code>server.log</code>
-<div class="highlight"><pre><span></span><code>{&quot;log_timestamp&quot;: &quot;2021-09-22 13:15:27.000&quot;, &quot;request&quot;: &quot;/&quot;, &quot;body_bytes_sent&quot;: 1024, &quot;ip&quot;: &quot;192.168.0.1&quot;, &quot;thread&quot;: &quot;T-1000&quot;}
-{&quot;log_timestamp&quot;: &quot;2021-09-22 13:15:32.000&quot;, &quot;request&quot;: &quot;/login&quot;, &quot;body_bytes_sent&quot;: 1987, &quot;ip&quot;: &quot;192.168.0.2&quot;, &quot;thread&quot;: &quot;T-1001&quot;}
-{&quot;log_timestamp&quot;: &quot;2021-09-22 13:15:34.000&quot;, &quot;request&quot;: &quot;/home.html&quot;, &quot;body_bytes_sent&quot;: 3056, &quot;ip&quot;: &quot;192.168.0.3&quot;, &quot;thread&quot;: &quot;T-1003&quot;}
-{&quot;log_timestamp&quot;: &quot;2021-09-22 13:16:01.000&quot;, &quot;request&quot;: &quot;/api/v1/products&quot;, &quot;body_bytes_sent&quot;: 4096, &quot;ip&quot;: &quot;192.168.0.4&quot;, &quot;thread&quot;: &quot;T-1004&quot;}
-{&quot;log_timestamp&quot;: &quot;2021-09-22 13:16:10.000&quot;, &quot;request&quot;: &quot;/about.html&quot;, &quot;body_bytes_sent&quot;: 1234, &quot;ip&quot;: &quot;192.168.0.5&quot;, &quot;thread&quot;: &quot;T-1005&quot;}
-</code></pre></div></p>
+<code>{"log_timestamp": "2021-09-22 13:15:27.000", "request": "/", "body_bytes_sent": 1024, "ip": "192.168.0.1", "thread": "T-1000"}
+{"log_timestamp": "2021-09-22 13:15:32.000", "request": "/login", "body_bytes_sent": 1987, "ip": "192.168.0.2", "thread": "T-1001"}
+{"log_timestamp": "2021-09-22 13:15:34.000", "request": "/home.html", "body_bytes_sent": 3056, "ip": "192.168.0.3", "thread": "T-1003"}
+{"log_timestamp": "2021-09-22 13:16:01.000", "request": "/api/v1/products", "body_bytes_sent": 4096, "ip": "192.168.0.4", "thread": "T-1004"}
+{"log_timestamp": "2021-09-22 13:16:10.000", "request": "/about.html", "body_bytes_sent": 1234, "ip": "192.168.0.5", "thread": "T-1005"}</code></p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>tail -f server.log | grep --line-buffered  thread | sed -r &#39;s/^.*log_timestamp\&quot;: \&quot;([^,]*)\&quot;,.*request\&quot;: \&quot;([^,]*)\&quot;.*body_bytes_sent\&quot;: ([^,]*),.*$/\1 \3 \2/&#39;
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>2021-09-22 13:15:27.000 1024 /
+<p><code>tail -f server.log | grep --line-buffered  thread | sed -r 's/^.*log_timestamp\": \"([^,]*)\",.*request\": \"([^,]*)\".*body_bytes_sent\": ([^,]*),.*$/\1 \3 \2/'</code></p>
+<p><code>2021-09-22 13:15:27.000 1024 /
 2021-09-22 13:15:32.000 1987 /login
 2021-09-22 13:15:34.000 3056 /home.html
 2021-09-22 13:16:01.000 4096 /api/v1/products
-2021-09-22 13:16:10.000 1234 /about.html
-</code></pre></div>
+2021-09-22 13:16:10.000 1234 /about.html</code></p>
 <h2 id="stream-processing-101_1">Stream processing 101<a class="headerlink" href="#stream-processing-101_1" title="Permanent link">#</a></h2>
 <p>Tóm lại, với những chương trình &ldquo;nhỏ&rdquo;, &ldquo;cơ bản&rdquo; bạn có thể gộp nó lại thành 1 chương trình to hơn, hoành tráng hơn rât nhiều, và <strong>stream processing</strong> cũng thế, với những element cơ bản:</p>
 <ul>
@@ -969,7 +964,7 @@ Bạn có thể cơ bản được cập nhật &ldquo;real-time&rdquo; tổng s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="July 14, 2026 05:15:31 UTC">2026-07-14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="April 3, 2023 16:08:36 UTC">2023-04-03</span>
   </span>
 
     
@@ -979,7 +974,7 @@ Bạn có thể cơ bản được cập nhật &ldquo;real-time&rdquo; tổng s
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="July 14, 2026 05:15:31 UTC">2026-07-14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="April 2, 2023 15:31:51 UTC">2023-04-02</span>
   </span>
 
     
