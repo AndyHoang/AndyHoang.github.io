@@ -82,7 +82,6 @@ plugins:
         mermaid2: false
         password_button: true
         remember_password: true
-        default_expire_delay: 24
         # reload_scripts:
             # - "./assets/extra.js"
 
@@ -120,8 +119,8 @@ markdown_extensions:
   - pymdownx.critic # track changes
   - pymdownx.details # add collapsible call-outs
   - pymdownx.emoji: # add inlines bundled and custom icons and emojis 
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences # define code blocks and nesting of code
   - pymdownx.highlight: # highlight of code blocks
       linenums_style: pymdownx-inline
