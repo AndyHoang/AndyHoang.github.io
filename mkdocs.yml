@@ -11,7 +11,9 @@ theme:
   features:
   # Navigation
   # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
-  # - navigation.instant # some features may not work properly with XHR
+  - navigation.instant # SPA-like instant page loading (no full reload)
+  - navigation.instant.prefetch # prefetch a page as soon as a link is hovered
+  - navigation.instant.progress # show a progress bar for slower loads
   - navigation.tracking # the URL changes with the active anchor
   - navigation.tabs # first top-level folders are shown as tabs
   # - navigation.tabs.sticky # tabs always show
@@ -34,14 +36,22 @@ theme:
   # Content
   # https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#adding-annotations
   - content.code.annotate # add comment to code blocks
+  - content.code.copy # one-click copy button on code blocks
   - content.tabs.link # link tabs with the same label
-  feature:
-    tabs: true
-    search: "auto"
-    toc: true
-  social:
-    - type: "github"
-      link: "https://github.com/AndyHoang"
+
+  palette:
+    # Light mode (default), respects system preference
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   #plugins:
     #- blog:
         #enabled: !ENV [CI, false]
@@ -54,11 +64,13 @@ plugins:
   # - tags: # we have our own internal tag feature
         # tags_file: tags.md # generated links do not work
   - blogging:
+      paging: false # required to coexist with theme feature navigation.instant (only 6 posts, so no pagination needed)
       dirs: # The directories to be included
         - blog
         - poet
       categories:
         - name: reviews
+          paging: false # must match global paging (navigation.instant requires paging off everywhere)
           dirs:
             - reviews
       time_format: '%B %d, %Y'
