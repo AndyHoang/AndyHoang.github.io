@@ -1,0 +1,39 @@
+name: dependabot-auto-merge
+on: pull_request
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    steps:
+      - name: Fetch Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@v2
+      # Only the grouped security-update PRs from .github/dependabot.yml
+      - name: Check it is a security update
+        id: security
+        if: contains(fromJSON('["python-security-updates", "actions-security-updates"]'), steps.meta.outputs.dependency-group)
+        run: echo "ok=true" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v7
+        if: steps.security.outputs.ok == 'true'
+        with:
+          fetch-depth: 0 # git-revision-date plugin needs full history
+      - name: Install uv
+        if: steps.security.outputs.ok == 'true'
+        uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+          python-version: "3.12"
+      - name: Build site
+        if: steps.security.outputs.ok == 'true'
+        run: |
+          uv sync --locked
+          uv run mkdocs build --strict
+      - name: Merge PR
+        if: steps.security.outputs.ok == 'true'
+        run: gh pr merge --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
