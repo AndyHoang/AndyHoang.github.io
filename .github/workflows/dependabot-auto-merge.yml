@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0 # git-revision-date plugin needs full history
       - name: Install uv
         if: steps.security.outputs.ok == 'true'
-        uses: astral-sh/setup-uv@v10.2.0
+        uses: astral-sh/setup-uv@v10.3.2
         with:
           enable-cache: true
           python-version: "3.12"
