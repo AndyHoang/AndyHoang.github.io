@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Fetch Dependabot metadata
         id: meta
-        uses: dependabot/fetch-metadata@v2
+        uses: dependabot/fetch-metadata@v3
       # Only the grouped security-update PRs from .github/dependabot.yml
       - name: Check it is a security update
         id: security
