@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Sơ đồ chỗ ngồi tiệc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<style>
+/* Layout: một cột đọc dọc — chọn kích thước mái che, tổng quan 3 phương án, rồi từng sơ đồ vẽ đúng tỉ lệ mét */
+:root{
+  --bg:#f6f4f7; --surface:#ffffff; --ink:#261f2b; --muted:#6c6474; --line:#d8d1dd;
+  --accent:#6a3d7b; --accent-ink:#ffffff; --table:#e6dfeb; --table-edge:#a99bb3; --stage:#efe3c2; --stage-edge:#c8ad62;
+  --buffet:#d9cfe0; --wall:#3a3040;
+  --straight:#1f6f9e; --side:#2f8a63; --warn:#cf8a1c; --bad:#c23b37;
+  --display:"Bricolage Grotesque", "Be Vietnam Pro", system-ui, sans-serif;
+  --body:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#18141b; --surface:#221d26; --ink:#eee8f1; --muted:#a79fae; --line:#3a3340;
+  --accent:#c79bd8; --accent-ink:#1d1621; --table:#3a3141; --table-edge:#7d6e88; --stage:#4a4130; --stage-edge:#b39a55;
+  --buffet:#3b3343; --wall:#cbbfd3; --straight:#5fb2e3; --side:#5cc495; --warn:#f0ad48; --bad:#f06b66; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#18141b; --surface:#221d26; --ink:#eee8f1; --muted:#a79fae; --line:#3a3340;
+  --accent:#c79bd8; --accent-ink:#1d1621; --table:#3a3141; --table-edge:#7d6e88; --stage:#4a4130; --stage-edge:#b39a55;
+  --buffet:#3b3343; --wall:#cbbfd3; --straight:#5fb2e3; --side:#5cc495; --warn:#f0ad48; --bad:#f06b66; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.wrap{max-width:1040px;margin:0 auto;display:grid;gap:36px}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,4.5vw,40px);font-weight:700}
+h2{font-size:24px;font-weight:700}
+h3{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0;font-weight:600}
+p{margin:0;max-width:68ch}
+.lede{color:var(--muted)}
+header{display:grid;gap:8px}
+.sizebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.sizebar .lbl{font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;font-variant-numeric:tabular-nums;padding:7px 14px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.sizebar .hint{color:var(--muted);font-size:13px}
+.cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.cmp{grid-template-columns:1fr}}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:10px;text-decoration:none;color:inherit;align-content:start}
+.opt:hover,.opt:focus-visible{border-color:var(--accent);outline:none}
+.opt .name{font-family:var(--display);font-size:19px;font-weight:700}
+.opt .sub{color:var(--muted);font-size:13px}
+.badge{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.counts{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:3px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.chip.zero{opacity:.45}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
+.d-straight{background:var(--straight)} .d-side{background:var(--side)} .d-warn{background:var(--warn)} .d-bad{background:var(--bad)}
+.chip b{font-weight:600}
+.explain{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px;font-size:14px}
+.legend div{display:flex;gap:8px;align-items:baseline}
+.legend .dot{transform:translateY(1px)}
+.legend small{color:var(--muted);display:block;font-size:12.5px}
+section{display:grid;gap:14px;scroll-margin-top:16px}
+.shead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+.plan svg{display:block;width:100%;min-width:680px;height:auto}
+.notes{display:grid;gap:6px;padding-left:18px;margin:0;max-width:75ch}
+.toolbar{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.toolbar label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;white-space:nowrap}
+td.n{color:var(--muted);width:1%}
+td.b{white-space:nowrap;font-weight:600}
+tr:last-child td{border-bottom:0}
+.sizes{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.size{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:2px}
+.size .k{font-size:12px;color:var(--muted)} .size .v{font-family:var(--display);font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+/* svg */
+.wall{fill:none;stroke:var(--wall);stroke-width:.06}
+.room{fill:var(--surface)}
+.tab{fill:var(--table);stroke:var(--table-edge);stroke-width:.025}
+.buf{fill:var(--buffet);stroke:var(--table-edge);stroke-width:.025;stroke-dasharray:.08 .05}
+.stg{fill:var(--stage);stroke:var(--stage-edge);stroke-width:.04}
+.tl{font-family:var(--display);font-weight:700;font-size:.26px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.sl{font-family:var(--display);font-weight:700;font-size:.34px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.nm{font-family:var(--body);font-size:.135px;fill:var(--muted);text-anchor:middle;dominant-baseline:central}
+.dim{stroke:var(--muted);stroke-width:.015;fill:none}
+.dt{font-family:var(--body);font-size:.17px;fill:var(--muted);text-anchor:middle;dominant-baseline:central;font-variant-numeric:tabular-nums}
+.seat-straight{fill:var(--straight)} .seat-side{fill:var(--side)} .seat-warn{fill:var(--warn)} .seat-bad{fill:var(--bad)}
+.seat-empty{fill:none;stroke:var(--muted);stroke-width:.02;stroke-dasharray:.05 .04}
+.face{stroke:var(--surface);stroke-width:.045;stroke-linecap:round}
+.guide{stroke:var(--accent);stroke-width:.015;stroke-dasharray:.08 .08;opacity:.5}
+.hide-names .nm{display:none}
+@media (prefers-reduced-motion:no-preference){.opt{transition:border-color .15s}}
+</style>
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h3>Mái che khoảng 120 m² · 64 khách · sân khấu tròn Ø3m</h3>
+    <h1>Sơ đồ chỗ ngồi tiệc</h1>
+    <p class="lede">Ba phương án xếp bàn, vẽ đúng tỉ lệ mét. Mỗi ghế được tô màu theo hướng người ngồi phải nhìn để thấy sân khấu.</p>
+  </header>
+
+  <div class="sizebar">
+    <span class="lbl">Kích thước mái che</span>
+    <div class="seg" role="group" aria-label="Kích thước mái che">
+      <button type="button" id="sz-a" data-size="a">12.6 × 9.5 m</button>
+      <button type="button" id="sz-b" data-size="b">12 × 10 m</button>
+    </div>
+    <span class="hint">Đổi kích thước thì cả ba sơ đồ, số đếm và hướng dẫn kê bàn đều tính lại.</span>
+  </div>
+
+  <div class="cmp" id="cmp"></div>
+
+  <div class="explain">
+    <h3>Màu ghế nghĩa là gì</h3>
+    <div class="legend">
+      <div><i class="dot d-straight"></i><span>Nhìn thẳng<small>Ghế quay mặt về sân khấu, không cần ngoảnh.</small></span></div>
+      <div><i class="dot d-side"></i><span>Ngoảnh sang bên<small>Ngồi đối diện người bên kia bàn, sân khấu nằm bên tay trái hoặc phải. Chỉ cần ngoảnh đầu.</small></span></div>
+      <div><i class="dot d-warn"></i><span>Xoay vai<small>Sân khấu chếch ra phía sau, phải xoay cả vai mới thấy.</small></span></div>
+      <div><i class="dot d-bad"></i><span>Quay lưng<small>Sân khấu nằm sau lưng, phải xoay hẳn ghế.</small></span></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted)">Bàn có ghế hai bên thì phần lớn khách ngồi đối diện nhau, nên nhiều nhất chỉ đạt mức “ngoảnh sang bên”. Chỉ ghế ở đầu bàn mới nhìn thẳng được.</p>
+  </div>
+
+  <div class="toolbar"><label><input type="checkbox" id="names" checked> Hiện tên khách</label></div>
+
+  <div id="sections" style="display:grid;gap:48px"></div>
+
+  <section id="kich-thuoc">
+    <div class="shead"><h2>Kích thước bàn</h2></div>
+    <p class="lede">Dùng chung cho cả ba phương án, lấy theo chú thích trong sơ đồ gốc. Mỗi ghế tính sâu 0.5m.</p>
+    <div class="sizes">
+      <div class="size"><span class="k">Bàn Hoa Bay</span><span class="v">1.2 × 0.75 m</span></div>
+      <div class="size"><span class="k">Bàn Campvile</span><span class="v">1.8 × 1.0 m</span></div>
+      <div class="size"><span class="k">Bàn CDCR</span><span class="v">1.0 × 1.0 m</span></div>
+      <div class="size"><span class="k">Bàn catering (buffet)</span><span class="v">1.6 × 0.9 m</span></div>
+      <div class="size"><span class="k">Sân khấu</span><span class="v">Ø 3.0 m</span></div>
+      <div class="size"><span class="k">Mái che</span><span class="v" id="roomsize">12.6 × 9.5 m</span></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const rad=d=>d*Math.PI/180;
+const num=v=>String(+v.toFixed(2));
+
+// Bàn: tâm (cx,cy), dài len theo trục u, rộng wid. A = dãy ghế phía -p, B = phía +p, far/near = ghế ở đầu bàn.
+function T(o){
+  const r=rad(o.rot||0), u=[Math.cos(r),Math.sin(r)], p=[-Math.sin(r),Math.cos(r)];
+  const seats=[], off=o.wid/2+0.25;
+  const side=(names,sg)=>names.forEach((n,i)=>{const s=-o.len/2+(i+.5)*o.len/names.length;
+    seats.push({x:o.cx+u[0]*s+sg*p[0]*off,y:o.cy+u[1]*s+sg*p[1]*off,f:[-sg*p[0],-sg*p[1]],n});});
+  side(o.A||[],-1); side(o.B||[],1);
+  const end=(names,sg)=>names.forEach((n,i)=>{const q=(i-(names.length-1)/2)*0.55, d=o.len/2+0.25;
+    seats.push({x:o.cx+sg*u[0]*d+p[0]*q,y:o.cy+sg*u[1]*d+p[1]*q,f:[-sg*u[0],-sg*u[1]],n});});
+  end(o.far||[],1); end(o.near||[],-1);
+  return {...o,u,p,seats};
+}
+// Bàn chĩa vào tâm sân khấu: alpha tính từ hướng thẳng xuống, dương = sang phải
+function spoke(S,alpha,r0,len,wid,o){
+  const a=rad(alpha), u=[Math.sin(a),Math.cos(a)], c=r0+len/2;
+  return T({...o,cx:S[0]+u[0]*c,cy:S[1]+u[1]*c,len,wid,rot:Math.atan2(u[1],u[0])*180/Math.PI,alpha,r0});
+}
+
+const G={
+  t1:["My","Lộc","Hải","Phượng","Kiên","Phong"],
+  t2:["Nhân","Hạnh","Bình","Hảo","Vy","Khang"],
+  t3:["Bo","Thuyên","Châu","Vợ Châu","Đăng","Vợ Đăng"],
+  t4:["Chí","Long","Dũng","Bằng","Sơn","Mai"],
+  c1:["Vương","Hậu","Tuấn","Mai","Nghĩa","Hùng"],
+  c2:["Xù","Kim","Văn","Thoa","An",""],
+};
+
+const SIZES={a:{RW:12.6,RH:9.5,label:"12.6 × 9.5 m"},b:{RW:12,RH:10,label:"12 × 10 m"}};
+
+function buildLayouts(sz){
+  const {RW,RH}=SIZES[sz], big=sz==="a";
+  const out=[];
+
+  // ---------- 1. Hiện tại (đo từ sơ đồ gốc, ~123px = 1m)
+  {
+    const S=[4.5,4.575];
+    out.push({id:"hien-tai",name:"Hiện tại",sub:"Sơ đồ gốc của bên trang trí",S,
+      tables:[
+        T({cx:4.7,cy:1.7,len:5.7,wid:1.0,rot:0,label:"18 KHÁCH · 3 Campvile",
+          A:["Mai","Tuấn","Nghĩa","Lộc","My","Hảo","Bình","Nhân","Hạnh"],
+          B:["Vương","Hậu","Hùng","Phong","Kiên","Hải","Phượng","Vy","Khang"]}),
+        T({cx:4.65,cy:7.85,len:5.7,wid:1.0,rot:0,label:"17 KHÁCH · 3 Campvile",
+          A:["Vợ","Đăng","Bo","Thuyên","Chí","Long","Dũng","Xù","Kim"],
+          B:["Vợ","Châu","An","Bằng","Sơn","Mai","Thoa","Văn"]}),
+        T({cx:1.25,cy:4.775,len:1.85,wid:1.0,rot:90,label:"CDCR",A:["Cậu","Mợ","Mẹ"],B:["Rể","Dâu"]}),
+        T({cx:9.075,cy:4.935,len:8.53,wid:0.75,rot:90,label:"BÀN DÀI 26",
+          A:["Trang","Triết","Trâm","Hoài Anh","Vicky","Chồng","Hà","Thuận","A.Phúc","Duy Quang","Sa","Chị Vân","Bé Vân",""],
+          B:["Bé Thanh","Thanh","Phi","Tú Anh","Khuê Tú","Nam Phương","Ngân","Bé Ngân","Mai","Linh","Vi","Mỹ","Thảo",""]}),
+      ],
+      buffets:[[10.65,1.0,11.55,9.0]],
+      dims:{top:[[0,1.85],[1.85,7.55,"3 bàn Campvile"],[7.55,8.1],[8.1,10.05],[10.05,10.65],[10.65,11.55],[11.55,RW]],
+            bottom:[[0.1,2.4,"CDCR"],[2.4,3.0],[3.0,6.0,"sân khấu"],[6.0,8.1]],
+            left:[[0,0.6],[0.6,2.8],[2.8,3.07],[3.07,6.08],[6.08,6.75],[6.75,8.95],[8.95,RH]],
+            right:[[0,0.67],[0.67,9.2,"bàn dài"],[9.2,RH]]},
+      notes:[
+        "Mỗi khối Campvile ngồi hai phía, nên dãy ngồi quay mặt ra xa sân khấu (9 người mỗi khối) bị quay lưng.",
+        "Dãy trái của bàn dài 26 người nhìn sang phải, sân khấu nằm sau lưng.",
+        "Hàng ghế dưới khối 18 khách cách sân khấu chỉ khoảng 0.3m.",
+        `Bàn dài chắn gần hết bề sâu mái che. Lối vòng qua hai đầu bàn chỉ còn ${num(0.67)}m và ${num(RH-9.2)}m.`,
+        "Vị trí bàn đo từ sơ đồ gốc, giữ nguyên khi đổi kích thước mái che."
+      ]});
+  }
+
+  // ---------- 2. Bàn thẳng
+  {
+    const c=big?{S:[6.3,1.7],cd:[3.7,1.4],d1:[0.975,2.1],d2:[11.625,2.7],r1:[[2.9,3.7],[5.8,3.7],[8.7,3.7]],r2:[[1.45,6.2],[4.35,6.2],[7.25,6.2]],buf:[2.0,8.6,10.0,9.5]}
+               :{S:[6.0,1.8],cd:[3.7,1.8],d1:[0.975,2.1],d2:[11.025,2.7],r1:[[2.9,3.8],[5.5,3.8],[8.1,3.8]],r2:[[1.6,6.4],[4.2,6.4],[6.8,6.4]],buf:[2.0,9.1,10.0,10.0]};
+    const camp=([x,y],label,names)=>T({cx:x+0.5,cy:y+0.9,len:1.8,wid:1.0,rot:90,label,A:names.slice(3),B:names.slice(0,3)});
+    const d2x=c.d2[0], sx=c.S[0], sy=c.S[1], r1y=c.r1[0][1], r2y=c.r2[0][1];
+    out.push({id:"ban-thang",name:"Bàn thẳng",sub:"Bàn đặt thẳng hàng, dễ kê",S:c.S,
+      tables:[
+        T({cx:c.cd[0],cy:c.cd[1],len:1.0,wid:1.0,rot:0,label:"CDCR",A:["Mẹ"],B:["Cậu","Mợ"],near:["Dâu","Rể"]}),
+        T({cx:c.d1[0],cy:c.d1[1],len:3.6,wid:0.75,rot:90,label:"DÀI 1",
+          A:["Trang","Triết","Trâm","Hoài Anh","Vicky","Chồng"],B:["Bé Thanh","Thanh","Phi","Tú Anh","Khuê Tú","Nam Phương"]}),
+        T({cx:d2x,cy:c.d2[1],len:4.8,wid:0.75,rot:90,label:"DÀI 2",
+          A:["Hà","Thuận","A.Phúc","Duy Quang","Sa","Chị Vân","Bé Vân"],B:["Ngân","Bé Ngân","Mai","Linh","Vi","Mỹ","Thảo"]}),
+        camp(c.r1[0],"C1",G.t1), camp(c.r1[1],"C2",G.t2), camp(c.r1[2],"C3",G.c1),
+        camp(c.r2[0],"C4",G.t3), camp(c.r2[1],"C5",G.t4), camp(c.r2[2],"C6",G.c2),
+      ],
+      buffets:[c.buf],
+      dims:{top:[[0,0.1],[0.1,1.85,"dài 1"],[1.85,c.cd[0]-1.0],[c.cd[0]-1.0,c.cd[0]+0.5,"CDCR"],[c.cd[0]+0.5,sx-1.5],[sx-1.5,sx+1.5,"sân khấu"],[sx+1.5,d2x-0.875],[d2x-0.875,d2x+0.875,"dài 2"],[d2x+0.875,RW]],
+            bottom:[[0,c.r1[0][0]-0.5],...c.r1.flatMap(([x],i)=>{const a=[[x-0.5,x+1.5,"C"+(i+1)]];const nx=c.r1[i+1];a.push([x+1.5,nx?nx[0]-0.5:d2x-0.875]);return a;})],
+            bottom2:[[0,c.r2[0][0]-0.5],...c.r2.flatMap(([x],i)=>{const a=[[x-0.5,x+1.5,"C"+(i+4)]];const nx=c.r2[i+1];a.push([x+1.5,nx?nx[0]-0.5:RW]);return a;})],
+            left:[[0,sy-1.5],[sy-1.5,sy+1.5,"sân khấu"],[sy+1.5,r1y],[r1y,r1y+1.8,"hàng 1"],[r1y+1.8,r2y],[r2y,r2y+1.8,"hàng 2"],[r2y+1.8,c.buf[1]],[c.buf[1],RH,"buffet"]],
+            right:[[0,0.3],[0.3,5.1,"dài 2"],[5.1,RH]]},
+      notes:[
+        "Dãy ghế sát tường của hai bàn dài quay mặt vào tường, nên sân khấu nằm sau lưng 13 người.",
+        "Dãy phía ngoài của C1, C3, C4 phải xoay vai. Xoay các bàn này xéo 30–45° về phía sân khấu là hết.",
+        "Có thể xếp người ít cần xem sân khấu (người lớn tuổi, nhà có em bé) vào dãy sát tường.",
+        big?"Lối hẹp nhất giữa các bàn khoảng 0.55m, giữa C3 và bàn dài 2."
+           :"Mái 12m ngang nên lối giữa các bàn Campvile chỉ còn 0.6m, giữa C3 và bàn dài 2 là 0.55m."
+      ]});
+  }
+
+  // ---------- 3. Bàn xéo
+  {
+    const S=big?[6.3,1.7]:[6.0,1.8];
+    const sp=(a,r0,label,names)=>spoke(S,a,r0,1.8,1.0,{label,A:names.slice(0,3),B:names.slice(3)});
+    const d2=big
+      ?{label:"DÀI 2",A:["Mai","Linh","Vi","Mỹ","Thảo","Ngân"],B:["Hà","Thuận","A.Phúc","Duy Quang","Sa","Chị Vân"],far:["Bé Ngân","Bé Vân"]}
+      :{label:"DÀI 2",A:["Mai","Linh","Vi","Mỹ","Thảo","Ngân","Bé Ngân"],B:["Hà","Thuận","A.Phúc","Duy Quang","Sa","Chị Vân","Bé Vân"]};
+    const buf=big?[0.1,3.1,1.0,9.5]:[0.1,3.2,1.0,9.6];
+    const [sx,sy]=S, c5end=sy+6.0+1.8;
+    out.push({id:"ban-xeo",name:"Bàn xéo",sub:"Mọi đầu bàn chĩa vào tâm sân khấu",S,guides:true,
+      tables:[
+        spoke(S,-90,2.1,3.6,0.75,{label:"DÀI 1",A:["Trang","Triết","Trâm","Hoài Anh","Vicky","Chồng"],...(big?{B:["Phi","Tú Anh","Khuê Tú","Nam Phương","Thanh"],far:["Bé Thanh"]}:{B:["Phi","Tú Anh","Khuê Tú","Nam Phương","Thanh","Bé Thanh"]})}),
+        spoke(S,90,2.1,3.6,0.75,d2),
+        spoke(S,0,2.1,1.0,1.0,{label:"CDCR",A:["Cậu","Mợ"],B:["Dâu","Rể"],far:["Mẹ"]}),
+        sp(-45,3.0,"C1",G.t1), sp(45,3.0,"C3",G.c1), sp(0,3.9,"C2",G.t2),
+        sp(-30,5.2,"C4",G.t3), sp(30,5.2,"C6",G.c2), sp(0,6.0,"C5",G.t4),
+      ],
+      buffets:[buf],
+      dims:{top:[[0,sx-5.7],[sx-5.7,sx-2.1,"dài 1"],[sx-2.1,sx-1.5],[sx-1.5,sx+1.5,"sân khấu"],[sx+1.5,sx+2.1],[sx+2.1,sx+5.7,"dài 2"],[sx+5.7,RW]],
+            bottom:[[0.1,1.0,"buffet"]],
+            left:[[0,sy-1.5],[sy-1.5,sy+1.5,"sân khấu"],[sy+1.5,sy+2.1],[sy+2.1,sy+3.1,"CDCR"],[sy+3.1,sy+3.9],[sy+3.9,sy+5.7,"C2"],[sy+5.7,sy+6.0],[sy+6.0,c5end,"C5"],...(RH-c5end>0.05?[[c5end,RH]]:[])],
+            right:[[0,RH]]},
+      steps:[
+        ["CDCR","1 bàn 1×1","Ngay giữa, trước sân khấu. Đầu bàn cách mép sân khấu 0.6m.","Thẳng"],
+        ["C2","1 bàn Campvile","Thẳng hàng sau CDCR, cách đuôi CDCR 0.8m (chừa chỗ ghế Mẹ).","Thẳng"],
+        ["C5","1 bàn Campvile",big?"Thẳng hàng sau C2, cách 0.3m. Đuôi bàn sát tường cuối.":"Thẳng hàng sau C2, cách 0.3m. Đuôi bàn cách tường cuối 0.4m.","Thẳng"],
+        ["Dài 1 / Dài 2","3 bàn Hoa Bay nối liền","Hai bên sân khấu, ngang tâm sân khấu. Đầu bàn cách mép sân khấu 0.6m.","Nằm ngang (vuông góc với bàn giữa)"],
+        ["C1 / C3","1 bàn Campvile","Hai bên CDCR. Đầu bàn ngang đầu CDCR, cách đường giữa 2.1m.","Xéo 45°: đuôi bàn lệch ra ngoài 1.3m"],
+        ["C4 / C6","1 bàn Campvile","Hai bên C2. Đầu bàn thấp hơn đầu C2 0.6m, cách đường giữa 2.6m.","Xéo 30°: đuôi bàn lệch ra ngoài 0.9m"],
+        ["Buffet","4 bàn catering nối liền","Sát tường trái, từ ngang đầu CDCR kéo xuống tới gần tường cuối.","Thẳng, dọc tường"],
+      ],
+      notes:[
+        "Hầu hết khách chỉ cần ngoảnh đầu sang bên, tối đa khoảng 84°. Không ai phải xoay vai hay quay lưng.",
+        "Mẹ ngồi ở đầu bàn CDCR, nhìn thẳng sân khấu.",
+        big?"Mỗi bàn dài dùng 3 bàn Hoa Bay, dư 1 bàn. Em bé ngồi ở đầu xa của bàn dài 1 và dài 2, nhìn thẳng sân khấu."
+           :"Mỗi bàn dài dùng 3 bàn Hoa Bay, dư 1 bàn. Mái 12m ngang nên đầu xa của hai bàn dài không còn chỗ kê ghế. Em bé ngồi ghế ăn dặm chen cạnh mẹ. Bàn dài 2 mỗi dãy 7 ghế, khá chật.",
+        big?"Buffet gồm 4 bàn nối dọc tường trái. Lối lấy đồ ăn hẹp nhất khoảng 0.9m, ở góc bàn C4."
+           :"Buffet gồm 4 bàn nối dọc tường trái. Lối lấy đồ ăn hẹp nhất khoảng 0.6m, ở góc bàn C4.",
+        "Đường nét đứt trên sơ đồ là dây căng từ tâm sân khấu, dùng để chỉnh hướng bàn khi kê.",
+        "Nếu bàn CDCR thật dài hơn 1m thì C2 và C5 không đủ chỗ."
+      ]});
+  }
+  return {RW,RH,layouts:out};
+}
+
+// ---------- tính góc
+function angleOf(s,S){const v=[S[0]-s.x,S[1]-s.y],l=Math.hypot(...v);
+  return Math.acos(Math.max(-1,Math.min(1,(v[0]*s.f[0]+v[1]*s.f[1])/l)))*180/Math.PI;}
+function cat(a){return a<=30?"straight":a<=100?"side":a<=135?"warn":"bad";}
+const CAT_LABEL={straight:"Nhìn thẳng",side:"Ngoảnh sang bên",warn:"Xoay vai",bad:"Quay lưng"};
+
+// ---------- vẽ
+const NS="http://www.w3.org/2000/svg";
+const f2=n=>(+n.toFixed(3));
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;parent&&parent.appendChild(e);return e;}
+function draw(L,RW,RH){
+  const M=0.95, hasB2=!!L.dims.bottom2;
+  const H=RH+M*2+(hasB2?0.45:0);
+  const svg=el("svg",{viewBox:`${-M} ${-M} ${RW+M*2} ${H}`,role:"img","aria-label":"Sơ đồ "+L.name});
+  el("rect",{x:0,y:0,width:RW,height:RH,class:"room"},svg);
+  if(L.guides) L.tables.forEach(t=>{const e=[t.cx+t.u[0]*t.len/2,t.cy+t.u[1]*t.len/2];
+    el("line",{x1:L.S[0],y1:L.S[1],x2:f2(e[0]),y2:f2(e[1]),class:"guide"},svg);});
+  L.buffets.forEach(([x0,y0,x1,y1])=>{el("rect",{x:x0,y:y0,width:f2(x1-x0),height:f2(y1-y0),class:"buf",rx:.04},svg);
+    const v=(y1-y0)>(x1-x0), cx=f2((x0+x1)/2), cy=f2((y0+y1)/2);
+    el("text",{x:cx,y:cy,class:"tl",transform:v?`rotate(-90 ${cx} ${cy})`:""},svg,"BUFFET");});
+  el("circle",{cx:L.S[0],cy:L.S[1],r:1.5,class:"stg"},svg);
+  el("text",{x:L.S[0],y:L.S[1]-.12,class:"sl"},svg,"Sân khấu");
+  el("text",{x:L.S[0],y:L.S[1]+.25,class:"dt"},svg,"Ø 3m");
+  L.tables.forEach(t=>{
+    const g=el("g",{transform:`translate(${f2(t.cx)} ${f2(t.cy)}) rotate(${f2(t.rot||0)})`},svg);
+    el("rect",{x:f2(-t.len/2),y:f2(-t.wid/2),width:t.len,height:t.wid,class:"tab",rx:.03},g);
+    let rot=((t.rot||0)%360+360)%360; const flip=rot>90&&rot<=270;
+    const lt=el("text",{x:0,y:0,class:"tl",transform:flip?"rotate(180)":""},g,t.label);
+    if(t.len<1.2||t.label.length*0.16>t.len) lt.setAttribute("style","font-size:.2px");
+  });
+  L.tables.forEach(t=>t.seats.forEach(s=>{
+    const g=el("g",{},svg);
+    el("circle",{cx:f2(s.x),cy:f2(s.y),r:.17,class:s.n?"seat-"+cat(s.a):"seat-empty"},g);
+    if(s.n){el("line",{x1:f2(s.x),y1:f2(s.y),x2:f2(s.x+s.f[0]*.13),y2:f2(s.y+s.f[1]*.13),class:"face"},g);
+      el("title",{},g,`${s.n}: ${CAT_LABEL[cat(s.a)].toLowerCase()} (${Math.round(s.a)}°)`);
+      el("text",{x:f2(s.x-s.f[0]*.33),y:f2(s.y-s.f[1]*.33),class:"nm"},g,s.n);}
+  }));
+  el("rect",{x:0,y:0,width:RW,height:RH,class:"wall"},svg);
+  const lab=([a,b,p])=>(p?p+" ":"")+num(b-a);
+  const hr=(segs,y)=>segs.forEach(sg=>{const [a,b]=sg; if(b-a<0.04) return;
+    el("line",{x1:a,y1:y,x2:b,y2:y,class:"dim"},svg);
+    [a,b].forEach(x=>el("line",{x1:x,y1:y-.09,x2:x,y2:y+.09,class:"dim"},svg));
+    const l=lab(sg);
+    if((b-a)>=l.length*0.085) el("text",{x:f2((a+b)/2),y:y-.15,class:"dt"},svg,l);
+    else el("text",{x:f2((a+b)/2),y:y+.2,class:"dt",style:"font-size:.13px"},svg,num(b-a));
+  });
+  const vr=(segs,x,side)=>segs.forEach(sg=>{const [a,b]=sg; if(b-a<0.04) return;
+    el("line",{x1:x,y1:a,x2:x,y2:b,class:"dim"},svg);
+    [a,b].forEach(y=>el("line",{x1:x-.09,y1:y,x2:x+.09,y2:y,class:"dim"},svg));
+    const l=(b-a)>=lab(sg).length*0.085?lab(sg):num(b-a), tx=x+side*.2, ty=f2((a+b)/2);
+    el("text",{x:tx,y:ty,class:"dt",style:(b-a)<0.45?"font-size:.13px":"",transform:`rotate(-90 ${tx} ${ty})`},svg,l);
+  });
+  hr(L.dims.top,-.45);
+  hr([[0,RW,"mái che"]],-.8);
+  if(L.dims.bottom) hr(L.dims.bottom,RH+.45);
+  if(hasB2) hr(L.dims.bottom2,RH+.9);
+  vr(L.dims.left,-.45,-1);
+  vr([[0,RH,"mái che"]],-.8,-1);
+  vr(L.dims.right,RW+.45,1);
+  return svg;
+}
+
+// ---------- hiển thị
+const cmp=document.getElementById("cmp"), secs=document.getElementById("sections");
+const chips=c=>`<div class="counts">${["straight","side","warn","bad"].map(k=>
+  `<span class="chip${c[k]?"":" zero"}"><i class="dot d-${k}"></i>${CAT_LABEL[k]} <b>${c[k]}</b></span>`).join("")}</div>`;
+
+function render(sz){
+  const {RW,RH,layouts}=buildLayouts(sz);
+  layouts.forEach(L=>{L.cnt={straight:0,side:0,warn:0,bad:0};L.max=0;
+    L.tables.forEach(t=>t.seats.forEach(s=>{s.a=angleOf(s,L.S);if(!s.n)return;L.cnt[cat(s.a)]++;L.max=Math.max(L.max,s.a);}));});
+  cmp.innerHTML=""; secs.innerHTML="";
+  document.getElementById("roomsize").textContent=SIZES[sz].label;
+  layouts.forEach((L,i)=>{
+    const a=document.createElement("a");a.href="#"+L.id;a.className="opt";
+    a.innerHTML=`<span class="badge">Phương án ${i+1}</span><span class="name">${L.name}</span><span class="sub">${L.sub}</span>${chips(L.cnt)}`;
+    cmp.appendChild(a);
+    const s=document.createElement("section");s.id=L.id;
+    s.innerHTML=`<div class="shead"><h2>Phương án ${i+1}: ${L.name}</h2>${chips(L.cnt)}</div><p class="lede">${L.sub}. Mái che ${SIZES[sz].label}.</p>`;
+    const plan=document.createElement("div");plan.className="plan";plan.appendChild(draw(L,RW,RH));s.appendChild(plan);
+    const ul=document.createElement("ul");ul.className="notes";
+    L.notes.forEach(n=>{const li=document.createElement("li");li.textContent=n;ul.appendChild(li);});
+    s.appendChild(ul);
+    if(L.steps){
+      const rows=L.steps.map((r,k)=>`<tr><td class="n">${k+1}</td><td class="b">${r[0]}</td><td style="white-space:nowrap">${r[1]}</td><td style="min-width:260px">${r[2]}</td><td style="min-width:170px">${r[3]}</td></tr>`).join("");
+      const box=document.createElement("div");box.style.cssText="display:grid;gap:10px";
+      box.innerHTML=`<h3>Hướng dẫn kê bàn</h3>
+        <p style="font-size:14px;color:var(--muted)"><b style="color:var(--ink)">Đường giữa</b> là đường thẳng từ tâm sân khấu chạy thẳng xuống tường cuối, đi qua giữa CDCR, C2 và C5. Kê theo thứ tự dưới đây. Mọi khoảng cách đo tới điểm giữa của đầu bàn phía sân khấu. Bàn xéo thì đuôi bàn lệch <b style="color:var(--ink)">ra phía ngoài</b>, xa đường giữa.</p>
+        <div class="tbl"><table><thead><tr><th>#</th><th>Bàn</th><th>Loại bàn</th><th>Đặt ở đâu</th><th>Hướng bàn</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      s.appendChild(box);
+    }
+    secs.appendChild(s);
+  });
+  document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.size===sz)));
+}
+
+let size="a";
+try{const v=localStorage.getItem("mai-che-size");if(v&&SIZES[v])size=v;}catch(e){}
+render(size);
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
+  size=b.dataset.size; try{localStorage.setItem("mai-che-size",size);}catch(e){}
+  render(size);
+}));
+const cb=document.getElementById("names");
+cb.addEventListener("change",()=>document.body.classList.toggle("hide-names",!cb.checked));
+</script>
+
+</body>
+</html>
