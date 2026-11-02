@@ -65,7 +65,7 @@ header{display:grid;gap:8px}
 section{display:grid;gap:14px;scroll-margin-top:16px}
 .shead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
 .plan{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
-.plan svg{display:block;width:100%;min-width:680px;height:auto}
+.plan svg{display:block;width:100%;min-width:760px;height:auto}
 .notes{display:grid;gap:6px;padding-left:18px;margin:0;max-width:75ch}
 .toolbar{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
 .toolbar label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
@@ -87,7 +87,7 @@ tr:last-child td{border-bottom:0}
 .stg{fill:var(--stage);stroke:var(--stage-edge);stroke-width:.04}
 .tl{font-family:var(--display);font-weight:700;font-size:.26px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
 .sl{font-family:var(--display);font-weight:700;font-size:.34px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
-.nm{font-family:var(--body);font-size:.135px;fill:var(--muted);text-anchor:middle;dominant-baseline:central}
+.nm{font-family:var(--body);font-weight:500;font-size:.15px;fill:var(--ink);opacity:.85;text-anchor:middle;dominant-baseline:central}
 .dim{stroke:var(--muted);stroke-width:.015;fill:none}
 .dt{font-family:var(--body);font-size:.17px;fill:var(--muted);text-anchor:middle;dominant-baseline:central;font-variant-numeric:tabular-nums}
 .seat-straight{fill:var(--straight)} .seat-side{fill:var(--side)} .seat-warn{fill:var(--warn)} .seat-bad{fill:var(--bad)}
@@ -302,9 +302,8 @@ const NS="http://www.w3.org/2000/svg";
 const f2=n=>(+n.toFixed(3));
 function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;parent&&parent.appendChild(e);return e;}
 function draw(L,RW,RH){
-  const M=0.95, hasB2=!!L.dims.bottom2;
-  const H=RH+M*2+(hasB2?0.45:0);
-  const svg=el("svg",{viewBox:`${-M} ${-M} ${RW+M*2} ${H}`,role:"img","aria-label":"Sơ đồ "+L.name});
+  const hasB2=!!L.dims.bottom2, ML=1.75, MR=1.45, MT=1.2, MB=0.85+(hasB2?0.45:0);
+  const svg=el("svg",{viewBox:`${-ML} ${-MT} ${RW+ML+MR} ${RH+MT+MB}`,role:"img","aria-label":"Sơ đồ "+L.name});
   el("rect",{x:0,y:0,width:RW,height:RH,class:"room"},svg);
   if(L.guides) L.tables.forEach(t=>{const e=[t.cx+t.u[0]*t.len/2,t.cy+t.u[1]*t.len/2];
     el("line",{x1:L.S[0],y1:L.S[1],x2:f2(e[0]),y2:f2(e[1]),class:"guide"},svg);});
@@ -326,7 +325,9 @@ function draw(L,RW,RH){
     el("circle",{cx:f2(s.x),cy:f2(s.y),r:.17,class:s.n?"seat-"+cat(s.a):"seat-empty"},g);
     if(s.n){el("line",{x1:f2(s.x),y1:f2(s.y),x2:f2(s.x+s.f[0]*.13),y2:f2(s.y+s.f[1]*.13),class:"face"},g);
       el("title",{},g,`${s.n}: ${CAT_LABEL[cat(s.a)].toLowerCase()} (${Math.round(s.a)}°)`);
-      el("text",{x:f2(s.x-s.f[0]*.33),y:f2(s.y-s.f[1]*.33),class:"nm"},g,s.n);}
+      const hz=Math.abs(s.f[0])>=0.5;
+      const tx=hz?s.x-Math.sign(s.f[0])*.24:s.x-s.f[0]*.3, ty=hz?s.y-s.f[1]*.12:s.y-s.f[1]*.31;
+      el("text",{x:f2(tx),y:f2(ty),class:"nm",style:hz?`text-anchor:${s.f[0]>0?"end":"start"}`:""},g,s.n);}
   }));
   el("rect",{x:0,y:0,width:RW,height:RH,class:"wall"},svg);
   const lab=([a,b,p])=>(p?p+" ":"")+num(b-a);
@@ -344,12 +345,12 @@ function draw(L,RW,RH){
     el("text",{x:tx,y:ty,class:"dt",style:(b-a)<0.45?"font-size:.13px":"",transform:`rotate(-90 ${tx} ${ty})`},svg,l);
   });
   hr(L.dims.top,-.45);
-  hr([[0,RW,"mái che"]],-.8);
+  hr([[0,RW,"mái che"]],-.85);
   if(L.dims.bottom) hr(L.dims.bottom,RH+.45);
   if(hasB2) hr(L.dims.bottom2,RH+.9);
-  vr(L.dims.left,-.45,-1);
-  vr([[0,RH,"mái che"]],-.8,-1);
-  vr(L.dims.right,RW+.45,1);
+  vr(L.dims.left,-1.05,-1);
+  vr([[0,RH,"mái che"]],-1.45,-1);
+  vr(L.dims.right,RW+1.05,1);
   return svg;
 }
 
