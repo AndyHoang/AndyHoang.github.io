@@ -96,6 +96,24 @@ tr:last-child td{border-bottom:0}
 .guide{stroke:var(--accent);stroke-width:.015;stroke-dasharray:.08 .08;opacity:.5}
 .hide-names .nm{display:none}
 @media (prefers-reduced-motion:no-preference){.opt{transition:border-color .15s}}
+.gbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between}
+.gstat{font-family:var(--display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.gstat small{font-family:var(--body);font-size:14px;font-weight:500;color:var(--muted)}
+.gtools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.gtools input[type=search]{font:inherit;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-width:0;width:200px}
+.btn{font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:focus-visible,.gtools input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.glist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.gcard{align-self:start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:6px;align-content:start}
+.gcard h4{margin:0;display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display);font-size:16px}
+.gcard h4 span{font-family:var(--body);font-size:12.5px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.gcard.done{border-color:var(--side)}
+.gi{display:flex;gap:10px;align-items:center;padding:4px 2px;cursor:pointer;border-radius:6px}
+.gi input{width:18px;height:18px;accent-color:var(--side);flex:none;margin:0}
+.gi.on .nmx{color:var(--muted);text-decoration:line-through}
+.gi .tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 6px}
+.confirm{display:flex;gap:8px;align-items:center;font-size:13px}
 </style>
 <style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head>
@@ -117,16 +135,6 @@ tr:last-child td{border-bottom:0}
     <span class="hint">Đổi kích thước thì sơ đồ, số đếm và hướng dẫn kê bàn đều tính lại.</span>
   </div>
 
-  <div class="explain">
-    <h3>Màu ghế nghĩa là gì</h3>
-    <div class="legend">
-      <div><i class="dot d-straight"></i><span>Nhìn thẳng<small>Ghế quay mặt về sân khấu, không cần ngoảnh.</small></span></div>
-      <div><i class="dot d-side"></i><span>Ngoảnh sang bên<small>Sân khấu nằm bên tay trái hoặc phải. Chỉ cần ngoảnh đầu.</small></span></div>
-      <div><i class="dot d-warn"></i><span>Xoay vai<small>Sân khấu chếch ra phía sau, phải xoay cả vai mới thấy.</small></span></div>
-      <div><i class="dot d-bad"></i><span>Quay lưng<small>Sân khấu nằm sau lưng, phải xoay hẳn ghế.</small></span></div>
-    </div>
-    <p style="font-size:13px;color:var(--muted)">Lúc có tiết mục, khách chỉ cần xoay ghế khoảng 90° là nhìn thẳng sân khấu, ghế không vướng bàn.</p>
-  </div>
 
   <div class="toolbar"><label><input type="checkbox" id="names" checked> Hiện tên khách</label></div>
 
@@ -145,6 +153,17 @@ tr:last-child td{border-bottom:0}
       <div class="size"><span class="k">Mái che</span><span class="v" id="roomsize">12.6 × 9.5 m</span></div>
     </div>
   </section>
+
+  <div class="explain" id="mau-ghe">
+    <h3>Màu ghế nghĩa là gì</h3>
+    <div class="legend">
+      <div><i class="dot d-straight"></i><span>Nhìn thẳng<small>Ghế quay mặt về sân khấu, không cần ngoảnh.</small></span></div>
+      <div><i class="dot d-side"></i><span>Ngoảnh sang bên<small>Sân khấu nằm bên tay trái hoặc phải. Chỉ cần ngoảnh đầu.</small></span></div>
+      <div><i class="dot d-warn"></i><span>Xoay vai<small>Sân khấu chếch ra phía sau, phải xoay cả vai mới thấy.</small></span></div>
+      <div><i class="dot d-bad"></i><span>Quay lưng<small>Sân khấu nằm sau lưng, phải xoay hẳn ghế.</small></span></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted)">Lúc có tiết mục, khách chỉ cần xoay ghế khoảng 90° là nhìn thẳng sân khấu, ghế không vướng bàn.</p>
+  </div>
 </div>
 
 <script>
@@ -317,15 +336,74 @@ function render(sz){
   const plan=document.createElement("div");plan.className="plan";plan.appendChild(draw(L));s.appendChild(plan);
   const ul=document.createElement("ul");ul.className="notes";
   L.notes.forEach(t=>{const li=document.createElement("li");li.textContent=t;ul.appendChild(li);});
-  s.appendChild(ul);
   const rows=L.steps.map((r,k)=>`<tr><td class="n">${k+1}</td><td class="b">${r[0]}</td><td style="white-space:nowrap">${r[1]}</td><td style="min-width:260px">${r[2]}</td><td style="min-width:170px">${r[3]}</td></tr>`).join("");
   const box=document.createElement("div");box.style.cssText="display:grid;gap:10px";
   box.innerHTML=`<h3>Hướng dẫn kê bàn</h3>
     <p style="font-size:14px;color:var(--muted)"><b style="color:var(--ink)">Đường giữa</b> là đường thẳng từ tâm sân khấu chạy thẳng xuống tường cuối, đi qua giữa CDCR, C1 và C2. Kê theo thứ tự dưới đây. Bàn chữ nhật đo tới điểm giữa của đầu bàn phía sân khấu, bàn tròn đo tới tâm bàn.</p>
     <div class="tbl"><table><thead><tr><th>#</th><th>Bàn</th><th>Loại bàn</th><th>Đặt ở đâu</th><th>Hướng bàn</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-  s.appendChild(box);
   secs.appendChild(s);
+  renderGuests(L);
+  const info=document.createElement("section");info.id="ghi-chu";
+  info.innerHTML=`<div class="shead"><h2>Ghi chú và hướng dẫn kê bàn</h2></div>`;
+  info.appendChild(ul); info.appendChild(box);
+  secs.appendChild(info);
   document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.size===sz)));
+}
+
+
+// ---------- danh sách khách + check-in
+const CK_KEY="sodocuoi-checkin-v1";
+let checked={};
+try{checked=JSON.parse(localStorage.getItem(CK_KEY)||"{}")||{};}catch(e){checked={};}
+const saveCk=()=>{try{localStorage.setItem(CK_KEY,JSON.stringify(checked));}catch(e){}};
+const ORDER=["CDCR","DÀI 1","DÀI 2","C1","C2","T1","T2","T3","T4"];
+const TNAME={"CDCR":"Bàn CDCR","DÀI 1":"Bàn dài 1","DÀI 2":"Bàn dài 2","C1":"Bàn C1","C2":"Bàn C2","T1":"Bàn tròn T1","T2":"Bàn tròn T2","T3":"Bàn tròn T3","T4":"Bàn tròn T4"};
+const KIDS=new Set(["Bé Thanh","Bé Ngân","Bé Vân","Túc"]);
+let gq="";
+function renderGuests(L){
+  const groups=ORDER.map(lb=>{const t=L.tables.find(x=>x.label===lb);
+    return {lb,names:t?t.seats.filter(s=>s.n).map(s=>s.n).sort((a,b)=>a.localeCompare(b,"vi")):[]};});
+  const total=groups.reduce((a,g)=>a+g.names.length,0);
+  const kids=groups.reduce((a,g)=>a+g.names.filter(n=>KIDS.has(n)).length,0);
+  const sec=document.createElement("section");sec.id="danh-sach";
+  sec.innerHTML=`<div class="shead"><h2>Danh sách khách</h2></div>
+    <div class="gbar"><div class="gstat" id="gstat"></div>
+      <div class="gtools"><input type="search" id="gsearch" placeholder="Tìm tên khách" aria-label="Tìm tên khách">
+        <span id="greset"></span></div></div>
+    <p class="lede" style="font-size:14px">Tổng ${total} người (${total-kids} người lớn, ${kids} em bé). Tick khi khách tới. Dấu tick lưu trên máy đang dùng, máy khác sẽ không thấy.</p>
+    <div class="glist" id="glist"></div>`;
+  secs.appendChild(sec);
+  const list=sec.querySelector("#glist"), stat=sec.querySelector("#gstat");
+  const key=(lb,n)=>lb+"|"+n;
+  function paint(){
+    let came=0;list.innerHTML="";
+    groups.forEach(g=>{
+      const vis=g.names.filter(n=>!gq||n.toLowerCase().includes(gq));
+      const c=g.names.filter(n=>checked[key(g.lb,n)]).length; came+=c;
+      if(!vis.length) return;
+      const card=document.createElement("div");card.className="gcard"+(c===g.names.length?" done":"");
+      card.innerHTML=`<h4>${TNAME[g.lb]}<span>${c}/${g.names.length}</span></h4>`;
+      vis.forEach(n=>{const k=key(g.lb,n), id="ck-"+g.lb.replace(/\W/g,"")+"-"+n.replace(/\s|\./g,"_");
+        const lab=document.createElement("label");lab.className="gi"+(checked[k]?" on":"");
+        lab.innerHTML=`<input type="checkbox" id="${id}" ${checked[k]?"checked":""}><span class="nmx">${n}</span>${KIDS.has(n)?'<span class="tag">em bé</span>':""}`;
+        lab.querySelector("input").addEventListener("change",e=>{if(e.target.checked)checked[k]=1;else delete checked[k];saveCk();paint();});
+        card.appendChild(lab);});
+      list.appendChild(card);});
+    stat.innerHTML=`${came}/${total} <small>khách đã tới</small>`;
+    paintReset(came);
+  }
+  function paintReset(came){
+    const r=sec.querySelector("#greset");r.innerHTML="";
+    if(!came) return;
+    const b=document.createElement("button");b.className="btn";b.type="button";b.textContent="Bỏ tick tất cả";
+    b.onclick=()=>{r.innerHTML=`<span class="confirm">Bỏ hết ${came} dấu tick? <button type="button" class="btn danger" id="gyes">Bỏ hết</button><button type="button" class="btn" id="gno">Thôi</button></span>`;
+      r.querySelector("#gyes").onclick=()=>{checked={};saveCk();paint();};
+      r.querySelector("#gno").onclick=()=>paintReset(came);};
+    r.appendChild(b);
+  }
+  sec.querySelector("#gsearch").value=gq;
+  sec.querySelector("#gsearch").addEventListener("input",e=>{gq=e.target.value.trim().toLowerCase();paint();});
+  paint();
 }
 
 let size="a";
