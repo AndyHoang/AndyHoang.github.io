@@ -121,7 +121,7 @@ tr:last-child td{border-bottom:0}
 
 <div class="wrap">
   <header>
-    <h3>Mái che khoảng 120 m² · 64 chỗ · sân khấu tròn Ø3m</h3>
+    <h3>Mái che khoảng 120 m² · 66 chỗ · sân khấu tròn Ø3m</h3>
     <h1>Sơ đồ chỗ ngồi tiệc</h1>
     <p class="lede">Sơ đồ chốt, vẽ đúng tỉ lệ mét. Đầu bàn nào cũng chĩa vào sân khấu. Mỗi ghế được tô màu theo hướng người ngồi phải nhìn để thấy sân khấu.</p>
   </header>
@@ -216,7 +216,7 @@ function buildLayout(sz){
     spoke(S,0,6.0,1.8,1.0,{label:"C2",A:["Xù","Kim","Văn"],B:["Thoa","An",""]}),
     round(S,sx-FL,sy+FD,1.2,"T1",["Phong","Kiên","Hải","Phượng","Lộc","My"]),
     round(S,sx+FL,sy+FD,1.2,"T2",["Hạnh","Túc","Nhân","Bình","Hảo","Vy","Khang"]),
-    round(S,sx+BL,sy+BD,1.2,"T3",["Sơn","Mai","Long","Dũng"]),
+    round(S,sx+BL,sy+BD,1.2,"T3",["Sơn","Mai","Long","Dũng","Liêm","Mi"]),
     round(S,sx-BL,sy+BD,1.2,"T4",["Bo","Thuyên","Chí","Bằng","Châu"]),
   ];
   return {RW,RH,S,tables,buffets:[buf],
@@ -235,7 +235,7 @@ function buildLayout(sz){
     ],
     notes:[
       "Bàn tròn: không kê ghế ở phía quay lưng vào sân khấu, các ghế còn lại chia đều. 2 ghế sát chỗ trống phải xoay vai một chút.",
-      "T2 có 7 chỗ: Túc ngồi ghế ăn dặm giữa Hạnh và Nhân, hơi chật. T3 chỉ 4 người, T4 chỉ 5 người nên rộng.",
+      "T2 có 7 chỗ: Túc ngồi ghế ăn dặm giữa Hạnh và Nhân, hơi chật. T4 chỉ 5 người nên rộng.",
       "Mẹ ngồi ở đầu bàn CDCR, nhìn thẳng sân khấu.",
       big?"Mỗi bàn dài dùng 3 bàn Hoa Bay. Em bé ngồi ở đầu xa của bàn dài 1 và dài 2, nhìn thẳng sân khấu."
          :"Mỗi bàn dài dùng 3 bàn Hoa Bay. Mái 12m ngang nên đầu xa của hai bàn dài không còn chỗ kê ghế, em bé ngồi ghế ăn dặm chen cạnh mẹ. Bàn dài 2 mỗi dãy 7 ghế, khá chật.",
@@ -359,6 +359,7 @@ const saveCk=()=>{try{localStorage.setItem(CK_KEY,JSON.stringify(checked));}catc
 const ORDER=["CDCR","DÀI 1","DÀI 2","C1","C2","T1","T2","T3","T4"];
 const TNAME={"CDCR":"Bàn CDCR","DÀI 1":"Bàn dài 1","DÀI 2":"Bàn dài 2","C1":"Bàn C1","C2":"Bàn C2","T1":"Bàn tròn T1","T2":"Bàn tròn T2","T3":"Bàn tròn T3","T4":"Bàn tròn T4"};
 const KIDS=new Set(["Bé Thanh","Bé Ngân","Bé Vân","Túc"]);
+const NOTE={"T1|Kiên":"phụ rể","T1|Phong":"phụ rể","C2|Kim":"em cô dâu","C2|Văn":"bạn trai em cô dâu"};
 let gq="";
 function renderGuests(L){
   const groups=ORDER.map(lb=>{const t=L.tables.find(x=>x.label===lb);
@@ -385,7 +386,7 @@ function renderGuests(L){
       card.innerHTML=`<h4>${TNAME[g.lb]}<span>${c}/${g.names.length}</span></h4>`;
       vis.forEach(n=>{const k=key(g.lb,n), id="ck-"+g.lb.replace(/\W/g,"")+"-"+n.replace(/\s|\./g,"_");
         const lab=document.createElement("label");lab.className="gi"+(checked[k]?" on":"");
-        lab.innerHTML=`<input type="checkbox" id="${id}" ${checked[k]?"checked":""}><span class="nmx">${n}</span>${KIDS.has(n)?'<span class="tag">em bé</span>':""}`;
+        lab.innerHTML=`<input type="checkbox" id="${id}" ${checked[k]?"checked":""}><span class="nmx">${n}${NOTE[k]?` (${NOTE[k]})`:""}</span>${KIDS.has(n)?'<span class="tag">em bé</span>':""}`;
         lab.querySelector("input").addEventListener("change",e=>{if(e.target.checked)checked[k]=1;else delete checked[k];saveCk();paint();});
         card.appendChild(lab);});
       list.appendChild(card);});
