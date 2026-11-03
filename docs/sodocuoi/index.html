@@ -156,7 +156,7 @@ function T(o){
   const r=rad(o.rot||0), u=[Math.cos(r),Math.sin(r)], p=[-Math.sin(r),Math.cos(r)];
   const seats=[], off=o.wid/2+0.25;
   const side=(names,sg)=>names.forEach((n,i)=>{const s=-o.len/2+(i+.5)*o.len/names.length;
-    seats.push({x:o.cx+u[0]*s+sg*p[0]*off,y:o.cy+u[1]*s+sg*p[1]*off,f:[-sg*p[0],-sg*p[1]],n});});
+    seats.push({x:o.cx+u[0]*s+sg*p[0]*off,y:o.cy+u[1]*s+sg*p[1]*off,f:[-sg*p[0],-sg*p[1]],n,i});});
   side(o.A||[],-1); side(o.B||[],1);
   (o.far||[]).forEach((n,i,arr)=>{const q=(i-(arr.length-1)/2)*0.55, d=o.len/2+0.25;
     seats.push({x:o.cx+u[0]*d+p[0]*q,y:o.cy+u[1]*d+p[1]*q,f:[-u[0],-u[1]],n});});
@@ -171,7 +171,7 @@ function spoke(S,alpha,r0,len,wid,o){
 function round(S,cx,cy,d,label,names){
   const th0=Math.atan2(S[1]-cy,S[0]-cx), n=names.length, rr=d/2+0.25, seats=[];
   names.forEach((nm,i)=>{const a=th0+(i+1)*2*Math.PI/(n+1);
-    seats.push({x:cx+rr*Math.cos(a),y:cy+rr*Math.sin(a),f:[-Math.cos(a),-Math.sin(a)],n:nm});});
+    seats.push({x:cx+rr*Math.cos(a),y:cy+rr*Math.sin(a),f:[-Math.cos(a),-Math.sin(a)],n:nm,rnd:true});});
   return {round:true,cx,cy,d,label,seats};
 }
 
@@ -263,9 +263,17 @@ function draw(L){
     if(!s.n) return;
     el("line",{x1:f2(s.x),y1:f2(s.y),x2:f2(s.x+s.f[0]*.13),y2:f2(s.y+s.f[1]*.13),class:"face"},g);
     el("title",{},g,`${s.n}: ${CAT_LABEL[cat(s.a)].toLowerCase()} (${Math.round(s.a)}°)`);
-    const hz=Math.abs(s.f[0])>=0.5;
-    const tx=hz?s.x-Math.sign(s.f[0])*.24:s.x-s.f[0]*.3, ty=hz?s.y-s.f[1]*.12:s.y-s.f[1]*.31;
-    el("text",{x:f2(tx),y:f2(ty),class:"nm",style:hz?`text-anchor:${s.f[0]>0?"end":"start"}`:""},g,s.n);
+    let tx,ty,anchor="middle";
+    if(s.rnd){ // bàn tròn: tên nằm ngoài ghế; ghế nhìn ngang thì tên đặt dưới ghế cho khỏi lấn sang bàn bên cạnh
+      if(Math.abs(s.f[0])>=0.7){tx=s.x;ty=s.y+.31;}
+      else if(s.f[1]>0.5){tx=s.x-Math.sign(s.f[0]||-1)*.24;ty=s.y;anchor=s.f[0]>0?"end":"start";}
+      else {tx=s.x-s.f[0]*.34;ty=s.y-s.f[1]*.34;}
+    } else if(Math.abs(s.f[0])>=0.5){
+      tx=s.x-Math.sign(s.f[0])*.24; ty=s.y-s.f[1]*.12; anchor=s.f[0]>0?"end":"start";
+    } else { // dãy ghế nằm ngang: tên so le cao thấp để không dính nhau
+      const k=.31+((s.i||0)%2)*.17; tx=s.x-s.f[0]*k; ty=s.y-s.f[1]*k;
+    }
+    el("text",{x:f2(tx),y:f2(ty),class:"nm",style:anchor!=="middle"?`text-anchor:${anchor}`:""},g,s.n);
   }));
   el("rect",{x:0,y:0,width:RW,height:RH,class:"wall"},svg);
   const lab=([a,b,p])=>(p?p+" ":"")+num(b-a);
