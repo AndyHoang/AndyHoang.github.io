@@ -121,7 +121,7 @@ tr:last-child td{border-bottom:0}
 
 <div class="wrap">
   <header>
-    <h3>Mái che khoảng 120 m² · 70 chỗ · sân khấu tròn Ø3m</h3>
+    <h3>Mái che khoảng 120 m² · 71 chỗ · sân khấu tròn Ø3m</h3>
     <h1>Sơ đồ chỗ ngồi tiệc</h1>
     <p class="lede">Sơ đồ chốt, vẽ đúng tỉ lệ mét. Đầu bàn nào cũng chĩa vào sân khấu. Mỗi ghế được tô màu theo hướng người ngồi phải nhìn để thấy sân khấu.</p>
   </header>
@@ -202,8 +202,9 @@ function buildLayout(sz){
   const d1=big
     ?{label:"DÀI 1",A:["Sơn","Mai","Long","Dũng","Liêm","Mi"],B:["Vy","Khang","Bình","Hảo","Nhân","Hạnh"],far:["Túc"]}
     :{label:"DÀI 1",A:["Sơn","Mai","Long","Dũng","Liêm","Mi"],B:["Vy","Khang","Bình","Hảo","Nhân","Túc","Hạnh"]};
-  const d2={label:"DÀI 2",A:["Tú Anh","Khương","Yến Phi","Hà","Thuận","Ngân"],B:["Châu","Bằng","Chí","Bo","MJ","Kelly"]};
-  const FL=2.6, FD=2.3, BL=2.7, BD=4.8;   // bàn tròn: lệch khỏi đường giữa / lùi khỏi tâm sân khấu
+  const d2={label:"DÀI 2",A:["Tú Anh","Khương","Yến Phi","Hà","Thuận","Ngân"],B:["MJ","Kelly","Châu","Bằng","Chí","Bo"]};
+  const FL=2.6, FD=2.3, BL=2.7, BD=4.8;
+  const DPA=big?44:41, DPR=big?6.7:6.8;   // bàn dự phòng góc phải phía sau   // bàn tròn: lệch khỏi đường giữa / lùi khỏi tâm sân khấu
   const buf=big?[0.1,3.1,1.0,9.5]:[0.1,3.2,1.0,9.6];
   const c2end=sy+6.0+1.8;
   const tables=[
@@ -215,6 +216,7 @@ function buildLayout(sz){
     round(S,sx-FL,sy+FD,1.2,"T1",["Phong","Kiên","Hải","Phượng","Lộc","My"]),
     round(S,sx+FL,sy+FD,1.2,"T2",["Triết","Trâm","Nam Phương","Hoài Anh","Lan Trang","Sa"]),
     round(S,sx+BL,sy+BD,1.2,"T3",["Mai","Linh","Vi","Thảo","Tâm","Mỹ"]),
+    spoke(S,DPA,DPR,1.2,0.75,{label:"DP",A:["Thuyên",""],B:["",""]}),
     round(S,sx-BL,sy+BD,1.2,"T4",["Yến","Chồng Yến","Lammy","Vicky","Khánh Linh","Châu Giang"]),
   ];
   return {RW,RH,S,tables,buffets:[buf],
@@ -229,6 +231,7 @@ function buildLayout(sz){
       ["Dài 1 / Dài 2","3 bàn Hoa Bay nối liền","Hai bên sân khấu, ngang tâm sân khấu. Đầu bàn cách mép sân khấu 0.6m.","Nằm ngang (vuông góc với bàn giữa)"],
       ["T1 / T2","Bàn tròn Ø1.2",`Hai bên CDCR. Tâm bàn cách đường giữa ${FL}m, cách tường sân khấu ${num(sy+FD)}m.`,"Chừa trống 1 chỗ phía sân khấu, ghế dồn về phía xa"],
       ["T4 / T3","Bàn tròn Ø1.2",`Hai bên C2. Tâm bàn cách đường giữa ${BL}m, cách tường sân khấu ${num(sy+BD)}m.`,"Chừa trống 1 chỗ phía sân khấu, ghế dồn về phía xa"],
+      ["DP","1 bàn Hoa Bay (bàn dư)",`Góc phải phía sau, sau lưng T3. Đầu bàn cách mép sân khấu ${num(DPR-1.5)}m.`,"Xéo, đầu bàn chĩa vào tâm sân khấu"],
       ["Buffet","4 bàn catering nối liền","Sát tường trái, từ ngang đầu CDCR kéo xuống tới gần tường cuối.","Thẳng, dọc tường"],
     ],
     notes:[
@@ -356,10 +359,10 @@ const CK_KEY="sodocuoi-checkin-v1";
 let checked={};
 try{checked=JSON.parse(localStorage.getItem(CK_KEY)||"{}")||{};}catch(e){checked={};}
 const saveCk=()=>{try{localStorage.setItem(CK_KEY,JSON.stringify(checked));}catch(e){}};
-const ORDER=["CDCR","DÀI 1","DÀI 2","C1","C2","T1","T2","T3","T4"];
-const TNAME={"CDCR":"Bàn CDCR","DÀI 1":"Bàn dài 1","DÀI 2":"Bàn dài 2","C1":"Bàn C1","C2":"Bàn C2","T1":"Bàn tròn T1","T2":"Bàn tròn T2","T3":"Bàn tròn T3","T4":"Bàn tròn T4"};
+const ORDER=["CDCR","DÀI 1","DÀI 2","C1","C2","T1","T2","T3","T4","DP"];
+const TNAME={"CDCR":"Bàn CDCR","DÀI 1":"Bàn dài 1","DÀI 2":"Bàn dài 2","C1":"Bàn C1","C2":"Bàn C2","T1":"Bàn tròn T1","T2":"Bàn tròn T2","T3":"Bàn tròn T3","T4":"Bàn tròn T4","DP":"Bàn dự phòng"};
 const KIDS=new Set(["Bé Sol","Bé c.Vân","Túc"]);
-const NOTE={"T1|Kiên":"phụ rể","T1|Phong":"phụ rể","C2|Kim":"em cô dâu","C2|Văn":"bạn trai em cô dâu"};
+const NOTE={"T1|Kiên":"phụ rể","T1|Phong":"phụ rể","C2|Kim":"em cô dâu","C2|Văn":"bạn trai em cô dâu","DP|Thuyên":"chưa chắc đi"};
 let gq="";
 function renderGuests(L){
   const groups=ORDER.map(lb=>{const t=L.tables.find(x=>x.label===lb);
