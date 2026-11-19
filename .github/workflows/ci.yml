@@ -3,23 +3,50 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch: # allow manual redeploys from the Actions tab
+
+# Read-only by default. Third-party mkdocs plugins run in the build job and
+# can't push to the repo; only the deploy job may publish to Pages.
 permissions:
-  contents: write
+  contents: read
+
+# One deploy at a time; don't cancel a deploy that's already in progress.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0 # git-revision-date plugin needs full history
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.2.0
+        uses: astral-sh/setup-uv@v10.3.3
         with:
           enable-cache: true
+          cache-dependency-glob: pyproject.toml # no uv.lock is committed
           python-version: "3.12"
       - name: Install dependencies
-        run: uv sync --locked
+        run: uv sync # no lockfile: always resolves the latest releases
+      - name: Build site
+        run: uv run mkdocs build
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
-        run: uv run mkdocs gh-deploy --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1

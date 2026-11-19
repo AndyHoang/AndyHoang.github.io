@@ -1,4 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>AndyHoang/renovate-config"]
+  "extends": ["local>AndyHoang/renovate-config"],
+  "packageRules": [
+    {
+      "description": "Python deps float to latest on each build; only GitHub Actions are managed here",
+      "matchManagers": ["pep621"],
+      "enabled": false
+    }
+  ]
 }

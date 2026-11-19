@@ -128,3 +128,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Dependencies float to latest on every build; lockfile is local-only
+uv.lock
